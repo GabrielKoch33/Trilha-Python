@@ -53,3 +53,17 @@ frase.split() #cada palavra é separa e recebe indice proprio, e cada mini-repar
 
 divido = frase.split()
 print(divido[0][3])#O 0 mostra apenas o primeiro conjunto, e o 3 a terceira letra
+
+print('O rato \nroeu a roupa \ndo rei de Roma') #o \n serve para quebrar linhas
+
+print('Quer fazer assim: você tenta responder as 20 questões?', end=' ')
+#end=' ' serve para dar espaço e continuar o print de baixo
+print('Posso corrigir por partes se preferir (tipo 1–10 e depois 11–20). Como prefere?')
+
+nome = input('digite seu nome ')
+print('prazer {:20}!'.format(nome))
+print('prazer {:>20}!'.format(nome))
+print('prazer {:^20}!'.format(nome))
+#O valor de nome ocupou 20 espaços de texto: GABRIEL       !
+#Usando {:>20} o nome ocupa 20 espaços, porem está alinhado a direita:        GABRIEL!
+#Utilizando {:^20} o nome ocupa um total de 20 espaços, porem centralizando o nome:      GABRIEL    .
