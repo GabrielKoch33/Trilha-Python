@@ -1,84 +1,79 @@
-import math
+# Quando não se usa from, deve se escrever no código math.sqrt (biblioteca.função)
+# Quando se usa o from, pode se declara apenas a função escolhida
 
 import math
-from math import sqrt
-from math import ceil, floor, pow
-
-import math
-num = int(input('digite um numero: '))
-raiz = math.sqrt(num)
-print(f'A raiz quadrada de {num} é = {math.ceil(raiz)}')
-
-from math import sqrt
-n = int(input('digite um numero: '))
-ra = sqrt(n)
-print(f'A raiz quadrada de {n} é = {ra}')
+math.sqrt(16)         # 4.0
+var = math.pi  # 3.14159...
+math.ceil(3.2)        # 4
+math.floor(3.9)       # 3
+math.factorial(5)     # 120
+math.log(100, 10)     # 2.0
 
 import random
-num = random.randint(1,11)
-print('aleatorio',num)
+random.random()              # float entre 0.0 e 1.0
+random.randint(1, 10)        # inteiro entre 1 e 10
+random.choice(["a","b","c"]) # elemento aleatório
+random.shuffle([1,2,3,4])    # embaralha in-place
+random.sample(range(100),5) # 5 únicos aleatórios
 
-integer = float(input('Digite um numero REAL'))
-print(f'A parte inteira de {integer} é ',int(integer))
-# ou
-import math
-inteira = float(input('Digite numero real: '))
-inteira = math.trunc(inteira)
-print(f'A parte inteira desse número é: {inteira}')
+import statistics as st
+dados = [2, 4, 4, 4, 5, 5, 7, 9]
+st.mean(dados)      # 5.0 — média
+st.median(dados)    # 4.5 — mediana
+st.mode(dados)      # 4   — moda
+st.stdev(dados)     # 2.0 — desvio padrão
 
-co = float(input('Cateto oposto '))
-ca = float(input('Cateto adjacente '))
-hip  = (math.pow(co, 2)) + (math.pow(ca, 2))
-hipo = math.sqrt(hip)
-print(f'A hipotenusa = {hipo}')
+len("Python")      # 6
+len([1, 2, 3])     # 3
+len({"a":1,"b":2}) # 2
 
-ang = float(input('Digite angulo '))
-seno = math.sin(math.radians(ang))
-coss = math.cos(math.radians(ang))
-tang = math.tan(math.radians(ang))
-print(f'Angulo {ang}, Seno {seno:.2f}, Cosseno {coss:.2f} e Tangente {tang:.2f}')
+list(range(5))        # [0,1,2,3,4]
+list(range(2,8))     # [2,3,4,5,6,7] #2 = inicio 8 = fim, considere fim-1
+list(range(0, 10, 2)) # [0,2,4,6,8] #2 pulando a cada 2
 
-import random
+tuple([1,2,3])  # (1, 2, 3) #converte para tuple, o comando list também pode ser utilizado para conversão, assim como set()
 
-a1 = input('Nome do primeiro aluno:')
-a2 = input('Nome do segundo aluno:')
-a3 = input('Nome do terceiro aluno:')
+set_ex = [1,2,2,3,3]  # {1,2,3}
+set(set_ex)
+#‘output’ = {1,2,3} (sem repetições)
 
-# sorteio = random.randint(1,3)
-#sorteia um numero aletório de 1 a 3  (inteiros)
+abs(-5)    # 5
+abs(-3.14) # 3.14
+# Retorna valor absoluto (valor da distância até o 0(sempre um número positivo, independente se a entrada por + ou -))
 
-print(sorteio)
-if sorteio == 1:
-    print(f'O aluno escolhido para apagar o quadro é {a1}')
+round(3.7)      # 4
+round(3.14159, 2) # 3.14; 2 = casas decimais
+# Arredonda números
 
-elif sorteio == 2:
-    print(f'O aluno escolhido para apagar o quadro é {a2}')
+max(3, 1, 9, 2)     # 9
+max([5, 8, 2])     # 8
+max("banana")      # 'n'
+# Maior valor
 
-elif sorteio == 3:
-    print(f'O aluno escolhido para apagar o quadro é {a3}')
+list(map(int, ["1","2","3"])) # [1,2,3]
+list(map(str.upper, ["a","b"])) # ['A','B']
+# Aplica uma função a todos os elementos
 
-import random
-aluno1 = input('Nome do primeiro aluno:')
-aluno2 = input('Nome do segundo aluno:')
-aluno3 = input('Nome do terceiro aluno:')
-lista = [aluno1, aluno2, aluno3]
-escolhido = random.choice(lista)#random.choice seleciona UM item aletório de uma lista/tupla/string
-print(f'O aluno escolhido foi, {escolhido}')
+sorted([3,1,4,1,5])         # [1,1,3,4,5]
+sorted("python")           # ['h','n','o','p','t','y']
+sorted([3,1,5], reverse=True) # [5,3,1]
+# Retorna uma nova lista ordenada (em ordem crescente)
 
-#random.shuffle() <-- serve para embaralhar
+list(reversed([1,2,3]))  # [3,2,1]
+list(reversed("abc"))    # ['c','b','a']
+# Mesma função do reverse=True na funcão acima
 
-v = math.pow(5,2)
-print(v)
+nome = input("Nome: ").strip().lower()
+# strip = Gabriel Koch = GabrielKoch
 
-import random
+name = input("Digite seu nome: ").lower()
+# name já armazena em minúsculo/maiúsculo
+# lower = gabrielkoch
 
-random.randint(1,11) = 'sorteia inteiros de 1 a 11'
+texto = "Python"
+novo = texto.upper()
+# texto ainda é 'Python'
+# novo é PYTHON
 
-my_list = [1, 2, 3, 4, 5]
-random.shuffle(my_list) = 'embaralha lista'
-print(lista) = [3,2,5,1,4]
-
-
-lista = [aluno1, aluno2, aluno3]
-escolhido = random.choice(lista)
-'escolhe um numero aleatório da lista/tupla/string'
+print("Python".upper())
+# print = PYTHON
