@@ -51,8 +51,18 @@ print(len(china.strip()))# frase s/ espaço no fim
 print(len(china.replace(' ',''))) #frase sem espaços no meio
 # se for para remover TODOS os espaços, o replace 
 # faz o papel do strip
+# replace já reajusta a frase automaticamente
+# [i] = [i+1]
+
 print(china.find('nes')) # = 3
 
 new_china = china.split()
 print(new_china[2][4])
 #        2 = maluco 4 = 'c' 
+
+num = int(input('escreva um numero de 1 a 9999 '))
+u = num // 1 % 10
+d = num // 10 % 10
+c = num // 100 % 10 
+m = num // 1000 % 10
+print(f'unidade = {u}\n dezena = {d}\n centena = {c}\n milhar = {m}')
