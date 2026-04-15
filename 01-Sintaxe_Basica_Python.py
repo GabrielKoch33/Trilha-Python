@@ -75,18 +75,15 @@ resultado = soma(2, 3)#programa vê a chamada, entrega os numeros para função 
 print(resultado)#exibe a operação realizada na função
 
 
-#BIBLIOTECAS E MÓDULOS
-import math #traz para o código a biblioteca math COMPLETA, com todos os "livros" a disposição
-print(math.sqrt(16))#biblioteca math, livro raiz quadrada
-
-from math import sqrt
-#traz para o código a biblioteca math, apenas o 'livro' sqrt
-
 num = [] #lista vazia
 for i in range(10): #De 0 até o alcance N-1
     valor = int(input(f'Digite o {i+1} numero: '))
     num.append(valor)
 print(num)  # escreve lista
+
+for c in range (6, 0, -1):
+    print(c)
+#Para replicar um downto é necessário indicar o inicio (6), o fim(0), e o grau de descréscimo (-1)
 
     #Primeiro Lê, Depois converte, e dps recebe. Direita -> Esquerda
     #.append adiciona valores ao fim da lista/vetor
