@@ -1,68 +1,101 @@
-#STRINGS EM PYTHON SÃO IMUTAVEIS;
-#NENHUM METODO ALTERA DIRETAMENTE;
-#ELES SEMPRE RETORNAM ALGO EM UMA NOVA VARIAVEL
+# Peça ao usuário para digitar uma frase e exiba quantos caracteres ela tem, contando espaços
+# frase = input("Digite uma frase: ")
+# # exiba o total de caracteres
 
+frase = input("Digite uma frase: ")
+print(len(frase))
 
-frase = 'Curso em Vídeo Python'
-len(frase) # = 21 caracteres
+nome = input("Seu nome: ")
+print(nome.lower())
+print(nome.upper())
+# exiba em maiúsculo e em minúsculo
 
-print(frase[9]) # = 'V'
-print(frase[9:13]) # [9:N-1] 'Víde'
-print(frase[9:21:2]) #'VdoPto' 
-'''Você pode omitir o indice inicial 
-ou final [:12] = escreve do começo até o 11.
-[15:] = escreve da posição inicial até o fim
-da string'''
+frase = "   Python é incrível!   "
+# exiba len() antes e depois do strip()
+print(len(frase))
+new = frase.strip()
+print(len(new))
 
-frase.count('o',0,13)
-'''Conta quantas vezes aparece a letra "o" 
-da posição 0 a 12'''
+frase = input("Digite uma frase: ")
+# 1. lista de palavras
+# 2. quantidade de palavras
+# 3. palavras unidas por '-'
+lista = frase.split() #split separa as palavras em indices unicos
+for i in lista: #range só se usa em numeros, em listas não
+    print(i)
 
-frase.find('deo')
-''' = 11; vai retornar a posição onde se
-inicia a frase "deo"; caso não encontre ele 
-retorna -1 '''
+print(len(lista))
+frasejoin = '-'.join(lista)
+print(frasejoin)
 
-print('Curso' in frase)
-# true | false
+#-----medio 
+#7)
+def limpar(texto):
+    texto = texto.lower().strip()
+    texto.replace(' ','')
+    return
 
-exemplo = 'Adoro mexer em Javascript'
-print(exemplo)
-exemplo.replace('Javascript','Python')
-print(exemplo)
+print(limpar("  Olá Mundo  "))  # 'olámundo'
 
-nova_frase = '   Aprenda Python  '
-print(nova_frase.strip())# remove espaços indesejados
-''' .rstrip() e lstrip() = right e left strip '''
+#8)
+#Dada a string 'Maria:25:São Paulo', separe os dados usando ':' como separador e exiba nome, idade e cidade em linhas separadas.
+def formulada (dados):
+    print(f'Nome: {dados[0]}')
+    print(f'Idade: {dados[1]}')
+    print(f'Cidade: {dados[2]}')
+    
+dados = "Maria:25:São Paulo"
+formulada(dados.split)
+# separe e exiba cada campo
 
-teste1 = 'Curso em Vídeo Python'
-teste_separado = teste1.split()
-# [Curso] [em] [Vídeo] [Python]
-# [01234] [01] [01234] [012345]
-#    0      1     2       3
-print(teste_separado)
+#9)frase = input("Digite uma frase: ")
+# 1. sem espaços
+# 2. comprimento sem espaços
+# 3. maiúsculo sem espaços
+frase = input("Digite uma frase: ")
+semEspacos = frase.replace(' ','')
+print(semEspacos)
+print(len(semEspacos))
+print(semEspacos.lower()) 
 
-teste1 = '-'.join(teste1)
-print(teste1)
+# Faça uma função que receba uma frase e retorne quantas vogais existem nela.
+def vogais(frasevogais):
+    for i in range(len(frasevogais)):
+        if frasevogais[i] == 'aeiou':
+            contadorvogal += 1
 
-china = 'chines safado maluco   '
-print(len(china)) #frase c/ os espaços no meio e fim
-print(len(china.strip()))# frase s/ espaço no fim
-print(len(china.replace(' ',''))) #frase sem espaços no meio
-# se for para remover TODOS os espaços, o replace 
-# faz o papel do strip
-# replace já reajusta a frase automaticamente
-# [i] = [i+1]
+    return contadorvogal
+frasevogais = input('escreva frase: ')
+resultado = vogais(frasevogais)
 
-print(china.find('nes')) # = 3
+# na 3 eu gostaria de usar uma função nativa, existe?
 
-new_china = china.split()
-print(new_china[2][4])
-#        2 = maluco 4 = 'c' 
+# Faça uma função que receba uma frase e substitua todas as ocorrências de uma palavra por outra, sem usar replace().
+def substituicao(frasevelha,oldpalavra, newpalavra):
+    s = frasevelha.split() #s recebe a frase dividida em indices aaa[1] bbb[2]...
+    for i in s: #percorre todos os indices buscando atender condições
+        if i == oldpalavra:
+            i = newpalavra
+                            # Para o python uma lista ['a','b'] as ASPAS e VIRGULAS são meramente para LEITURA DO USUÁRIO
+    frasenova = " ".join(s) # Logo, usar o " ".join(lista) apenas ligará os elementos com um ESPAÇO
+    return frasenova
 
-num = int(input('escreva um numero de 1 a 9999 '))
-u = num // 1 % 10
-d = num // 10 % 10
-c = num // 100 % 10 
-m = num // 1000 % 10
-print(f'unidade = {u}\n dezena = {d}\n centena = {c}\n milhar = {m}')
+frasevelha = input(print('frase: ')) # fiofó[1] do[2] cachorro[3]
+oldpalavra = input(print('qual palavra da frase vai ser mudada?: '))
+newpalavra = input(print('qual vai ser a nova palavra?: '))
+resultado1 = substituicao(frasevelha,oldpalavra, newpalavra)
+print(resultado1)
+
+# Crie uma função que receba um e-mail e retorne:
+# usuário antes do @
+# domínio depois do @
+
+def ler_email(e):
+    for i in range(len(e)):# len() e range() len() só é utilzado em strings e range em strings e numeros (10) == 0 a 9
+        if e[i] == '@':
+            achou = i
+    print(f'Usuário: {e[:achou-1]}')    
+    print(f'Domínio: {e[achou:]}')
+
+e = print(input('Qual é seu email?: '))
+ler_email(e)
