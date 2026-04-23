@@ -1,0 +1,67 @@
+# 📋 Você trabalha num sistema de cadastro de usuários. Antes de salvar, o sistema precisa validar se os dados estão corretos.
+# Enttrada =
+
+nome = "Ana Silva"
+email = "ana@email.com"
+idade = 16
+senha = "afg"
+
+if type(nome) != str and nome.isnumeric() == True and nome.isalnum() == True:
+    nome_valido = False
+else:
+    novo_nome = nome.strip().split() 
+    for c in range(len(novo_nome)):
+        if len(novo_nome[c]) > 1 and novo_nome[c].isalpha() == True and novo_nome[c] not in '|@\#$%/&*()':
+            nome_valido = True
+        else:
+            nome_valido = False
+            # REPLACE APENAS FUNCIONA EM STRING, NESSE CASO EU TORNEI NOVO NOME UMA LISTA COM STRINGS (1º e 2º nome)
+
+email = email.strip()
+if '@' and '.com' not in email: # @ e .com existem?
+    email_valido = False
+else:
+    if email[0] in '1234567890': #primeira posição é numero?
+         email_valido = False
+    else:
+        for j in range(len(email)):
+            if email[j] == email[j].upper():
+                email_valido = False
+            else:
+                email_valido = True
+
+if idade < 18:
+    idade_valida = False
+else:
+    idade_valida = True
+
+if len(senha) < 6:
+    senha_valida = False
+else: 
+    senha_valida = True
+                    
+     
+acesso = 0 # >= 1 acesso negado
+if nome_valido == True:
+    print('Nome Válido')
+else:
+    print('Nome Inválido (NOME INVÁLIDO AOS PADRÕES DO SITE)')
+    acesso += 1
+if email_valido == True:
+    print('Email Válido')
+else:
+    print('Email Inválido (EMAIL INEXISTÊNTE)')
+    acesso += 1
+if idade_valida == True:
+    print('Idade Válida')
+else:
+    print('Idade Inválida (MENOR DE IDADE)')
+    acesso += 1
+if senha_valida == True:
+    print('Senha Válida')
+else:
+    print('Senha Inválida (SENHA FRACA)')
+    acesso += 1
+if acesso >= 1:
+    print('Cadastro REJEITADO')
+
