@@ -16,8 +16,9 @@ cont = 0
 
 for i in range(tam):
     if lista[i] > media:
-        print(lista[i])
+        print(f'Valor acima da média: {lista[i]}')
         cont += 1
+print(f'Existem {cont} Valores acima da média')
 
 # =====================================================================
 # Leia 10 números em uma lista e mostre: Vetor original & Vetor invertido (Sem Métodos)
@@ -30,7 +31,7 @@ for i in range(4):# = 0,1,2,3 = 4 espaços
 
 num_inv =[0,0,0,0]
 c= 0
-for i in range(3,-1,-1):# = 3,2,1,0 (caso o 'fim' fosse 0, iria ser 3,2,1)
+for i in range(3,-1,-1): # num = [{0}{1}{2}{3]}; -1 porque se fosse 0 ele iria apenas até o 1 (inicio,fim-1)
     num_inv[c] = num[i]
     c += 1
 
