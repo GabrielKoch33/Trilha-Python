@@ -3,35 +3,63 @@
 # valores 'M' ou 'F'. Caso esteja errado, peça a digitação novamente até ter um valor
 # correto.
 # =====================================================================
+while True:
+    sexo = input('Digite seu sexo [M] ou [F]: ')
+    if sexo not in 'MmFf':
+        print('Resposta Inválida, tente novamente')
+    else:
+        break
+if sexo == 'M'or sexo == 'm':
+    print('Você é homem')
+else:
+    print('Você é mulher')
 
 # =====================================================================
 # Exercício 058: Melhore o jogo do DESAFIO 028 onde o computador vai "pensar" em um
 # número entre 0 e 10. Só que agora o jogador vai tentar adivinhar até acertar,
 # mostrando no final quantos palpites foram necessários para vencer.
 # =====================================================================
+# import random
+# computador = random.randint(1,10)
 
-# =====================================================================
-# Exercício 059: Crie um programa que leia dois valores e mostre um menu na tela:
-# =====================================================================
+# while True:
+#     palpite = int(input('Qual número você acha que o computador pensou? R: '))
+#     if palpite == computador:
+#         print('Parabéns')
+#         break
+#     else:
+#         print('Tente novamente')
 
 # =====================================================================
 # Exercício 060: Faça um programa que leia um número qualquer e mostre o seu fatorial.
 # =====================================================================
+n = int(input('numero que será fatorado: '))
+f = 1 
+i = 2
+while i <= n:
+    f = f * i
+    i += 1
+print(f'O fatorial de {n} é {f}')
 
-# =====================================================================
-# Exercício 061: Refaça o DESAFIO 051, lendo o primeiro termo e a razão de uma PA,
-# mostrando os 10 primeiros termos da progressão usando a estrutura while.
-# =====================================================================
-
-# =====================================================================
-# Exercício 062: Melhore o DESAFIO 061, perguntando para o usuário se ele quer mostrar
-# mais alguns termos. O programa encerrará quando ele disser que quer mostrar 0 termos.
-# =====================================================================
 
 # =====================================================================
 # Exercício 063: Escreva um programa que leia um número N inteiro qualquer e mostre na
 # tela os N primeiros elementos de uma Sequência de Fibonacci.
 # =====================================================================
+tam = int(input('tamanho da seq de fibonaci '))
+sequencia = [0,1]
+
+while True:
+    for e in range(2,tam):
+        sequencia.append(sequencia[e-1] + sequencia[e-2]) 
+    print(sequencia)
+    op = input('Deseja continuar? S ou N ')
+    if op in 'Nn':
+        break
+    elif op in 'Ss':
+        tam = int(input('Novo tamanho para a seq de fibonaci '))
+    else:
+        print('Invalida, tente dnv') 
 
 # =====================================================================
 # Exercício 064: Crie um programa que leia vários números inteiros pelo teclado. O
@@ -157,9 +185,6 @@
 # =====================================================================
 # Exercício 084: Faça um programa que leia nome e peso de várias pessoas, guardando tudo
 # em uma lista. No final, mostre:
-# =====================================================================
-# =====================================================================
-# Leia nome e peso de várias pessoas e guarde em uma lista
 # 1- Quantas pessoas foram cadastradas
 # 2- Lista de mais pesadas
 # 3- Lista de mais leves
@@ -198,22 +223,69 @@ print(f'A quantidade de pessoas cadastradas foi: {len(cadastro)}\n Pessoas Leves
 # valores lidos pelo teclado. No final, mostre a matriz na tela, com a formatação
 # correta.
 # =====================================================================
-
+matriz = []
+for i in range(3):
+    linha = []
+    for j in range(3):
+      elemento = int(input(f'valor na posição [{i+1},{j+1}] = '))
+      linha.append(elemento)
+    matriz.append(linha)
+                                    # matriz = [1,2,3]
+for i in range(3):                  #          [4,5,6]
+    print(f'{matriz[i]}')           #          [7,8,9] 
+        
 # =====================================================================
-# Exercício 087: Aprimore o desafio anterior, mostrando no final:
-# =====================================================================
-
-# =====================================================================
-# Exercício 088: Faça um programa que ajude um jogador da MEGA SENA a criar palpites.O
-# programa vai perguntar quantos jogos serão gerados e vai sortear 6 números entre 1 e
+# Exercício 088: Faça um programa que ajude um jogador da MEGA SENA a criar palpites.
+# O programa vai perguntar quantos jogos serão gerados e vai sortear 6 números entre 1 e
 # 60 para cada jogo, cadastrando tudo em uma lista composta.
 # =====================================================================
+import random
+qtd = int(input('Quantos jogos serão comprados? '))
+
+jogosLista = []
+for i in range(qtd):
+    numSorteados = []
+    for j in range(1):
+        e = random.sample(range(1,100),6) # e recebe uma lista de 6 valores
+        numSorteados.append(e) # = [[1,2,3,4,5,6]]
+    jogosLista.append(numSorteados)
+
+print(f'Você comprou {qtd} jogos!\nAqui estão seus números sorteados:')
+for i in range(qtd):
+    print(f'{i+1}º Jogo: {jogosLista[i]}')
+
+# jogosLista = [[],[],[]]
+# Cada [] interno é definido por qtd
+# j = 1 permite que dentro de cada i seja armazado uma lista de 6 numeros
 
 # =====================================================================
 # Exercício 089: Crie um programa que leia nome e duas notas de vários alunos e guarde
 # tudo em uma lista composta. No final, mostre um boletim contendo a média de cada um e
 # permita que o usuário possa mostrar as notas de cada aluno individualmente.
 # =====================================================================
+boletim = []
+nomeAluno = []
+notasAluno = []
+while True:
+    nome = input('Digite o nome do aluno')
+    nomeAluno.append([nome]) # Guarda o nome como uma lista dentro de nome aluno = nomeALUNO[['Ana'],['Júlio']]
+    op = str(input('Continuar? S/N'))
+    if op in 'Nn':
+        break
+
+print(nomeAluno) # [[a1,[notas]],[a2,[notas]],[a3,[notas]]]
+
+for posi, aluno in enumerate(nomeAluno):
+    notasAluno = [] # Reseta a lista de notas a cada novo aluno
+    for notas in range(2):
+        elemento = float(input(f'{notas+1} ª nota de {aluno} = '))
+        notasAluno.append(elemento)
+    nomeAluno[posi].append(notasAluno[:]) # Aluno recebe uma cópia : de suas notas, para quando resetar as Notas não alterar dentro de nome
+
+boletim = nomeAluno
+
+for aluno in boletim:
+    print(aluno)
 
 # =====================================================================
 # Exercício 090: Faça um programa que leia nome e média de um aluno, guardando também a
