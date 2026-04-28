@@ -1,37 +1,8 @@
 # =====================================================================
 # 📋 Você recebe uma lista de registros de log de um servidor. 
-# Cada linha tem o formato 'TIPO - mensagem'. 
+# Cada linha tem o formato 'TIPO - log'. 
 # Crie uma função que conta quantos logs são de cada tipo e lista as mensagens de erro.
 # =====================================================================
-
-def typelogs(logs):
-    cInfo = 0
-    cErro = 0
-    cAviso = 0
-    logs_tratados = []
-    erros = []
-
-    for i in range(len(logs)):
-        logs_tratados.append(logs[i].split(' - '))# logs_tratados = [['INFO','xxxxxx']['AVISO','yyyyyyyy'][...]]
-    
-    for j in range(len(logs_tratados)):
-        tipo = logs_tratados[j][0]      # 'INFO', 'ERRO' ou 'AVISO'
-        mensagem = logs_tratados[j][1]  # texto depois do ' - '
-
-        if tipo == 'INFO':
-            cInfo += 1
-        elif tipo == 'AVISO':
-            cAviso += 1
-        else:
-            cErro += 1
-            erros.append(mensagem)
-
-    print(f'INFO: {cInfo}')
-    print(f'AVISO: {cAviso}')
-    print(f'ERRO: {cErro}')
-    print('\nMensagens de erro:')
-    for erro in erros:
-        print(f'- {erro}')
 
 logs = [
   "INFO - Servidor iniciado",
@@ -41,14 +12,52 @@ logs = [
   "ERRO - Timeout na requisição",
   "AVISO - Memória acima de 80%"
 ]
+def separar_logs(logs): 
+    logs_separados = []
+    for log in logs: 
+        partes = log.split(' - ')
+        tipo = partes[0] 
+        msg = partes[1]
+        logs_separados.append((tipo,msg)) # Quando demos append((tipo,msg)) Estamos adicionando a lista uma tupla de ('tipo','mensagem')
+    return logs_separados
+ 
+def contar_logs(logs_separados):
+    contagem = {
+        "INFO": 0,
+        "AVISO":0,
+        "ERRO":0
+    }
+    for tipo, msg in logs_separados:
+        if tipo == 'INFO':
+            contagem["INFO"] += 1
+        elif tipo == 'AVISO':
+            contagem["AVISO"] += 1
+        else:  
+            contagem["ERRO"] += 1
 
-typelogs(logs)
+    return contagem
 
-# =====================================================================
-# Refatoração com foco em:
-# - Evitar print() dentro da função principal
-# - Uso de dicionários com foco em escalar o código
-# - Usar: for item in lista:  print(item)
-# - def analisar_logs(logs: list[str]) -> dict: (Escrever funções que retornem valores ao invés de prints internos)
-# =====================================================================
+def extrair_erros(logs_separados):
+    textos_erros = []
+    for tipo,msg in logs_separados:
+        if tipo == 'ERRO':
+            textos_erros.append(msg)
+    return textos_erros
 
+def analisar_logs(logs):
+    logs_separados = separar_logs(logs)
+    contagem = contar_logs(logs_separados)
+    erros = extrair_erros(logs_separados)
+    return {
+        "contagem":contagem,
+        "erros": erros
+    }
+
+logs_separados = separar_logs(logs) 
+for item in logs_separados:
+    print(item)
+print()
+
+log_analisados = analisar_logs(logs)
+print(log_analisados)
+print()
