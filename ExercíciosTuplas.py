@@ -96,32 +96,30 @@ print()
 # ==========================================================================================================
 # Dada a lista de produtos, ordene-a pelo preço (do mais barato ao mais caro) e exiba o resultado formatado.
 # ==========================================================================================================
+              
 produtos = [
     ("Monitor", 900.0),
     ("Mouse", 80.0),
     ("Teclado", 150.0),
     ("Webcam", 130.0)
 ]
-# Em situaçõs de Bubble Sort como esse o desempacotamento de tuplas não é recomendado.
-for i in range(len(produtos)-1):
-    for j in range(1,len(produtos)):
-        if produtos[i][1] > produtos[j][1]: # Aqui comparamos os valores internos da Tupla 1 com Tupla 2, se True:
-            aux  = produtos[i]          
-            produtos[i] = produtos[j] # } Alteramos as posições da Tupla (Não dos valores internos da tupla (pois é impossível))
-            produtos[j] = aux         
-        
-print(sorted(produtos, reverse=True))
-print()
+
+for i in range(len(produtos) - 1):
+    for j in range(len(produtos) - i - 1):
+        if produtos[j][1] > produtos[j + 1][1]:
+            aux = produtos[j]
+            produtos[j] = produtos[j + 1]
+            produtos[j + 1] = aux
+
+print(produtos)
 
 # ======================================================================
 # Desempacote e exiba: Produto: Teclado | Preço: R$150.00 | Estoque: 10"
 # ======================================================================
-
 produto = ("Teclado", 150.0, 10)
 
 a,b,c = produto
 print(f' | Produto: {a}\n | Preço: {b}\n | Estoque: {c}')
-
 
 # =====================================================================
 # Crie uma tupla de cores. Tente modificar um elemento e observe o erro. 

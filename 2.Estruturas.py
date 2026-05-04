@@ -71,7 +71,7 @@ nomes = ("Ana", "Carlos", "João")
 misturado = (1, "A", True, (1,3))
 
 # ==========
-# MÉTODOS:
+# MÉTODOS: IGUAIS OS DA LISTA
 # ==========
 
 # Assim como a lista, pode ser acessada a ultima posição com [-1]

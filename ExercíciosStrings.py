@@ -78,7 +78,7 @@ def qtd(frase):
 
     maior = dividida[0]
 
-    for i in range(len(dividida)):
+    for i in range(1,len(dividida)):
         if len(dividida[i]) > len(maior):
             maior = dividida[i]
 

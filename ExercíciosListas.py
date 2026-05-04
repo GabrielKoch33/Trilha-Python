@@ -1,3 +1,6 @@
+# O range(len()) é inclusivo no inicío e exclusiva no final, ou seja:
+# for i in range(len(frutas)): sendo frutas len()=3; o range vai de 0 a 2
+
 # =====================================================================
 # Dada uma lista de números: Retorne quantos são maiores que a média
 # =====================================================================
@@ -26,17 +29,16 @@ print(f'Existem {cont} Valores acima da média')
 
 num = []
 for i in range(4):# = 0,1,2,3 = 4 espaços
-    valor = int(input('Digite 4 Números: '))
+    valor = int(input(f'Digite o {i+1}º Números: '))
     num.append(valor)
 
-num_inv =[0,0,0,0]
-c= 0
+num_inv =[]
 for i in range(3,-1,-1): # num = [{0}{1}{2}{3]}; -1 porque se fosse 0 ele iria apenas até o 1 (inicio,fim-1)
-    num_inv[c] = num[i]
-    c += 1
+    num_inv.append(num[i])
 
 print(num)
 print(num_inv)
+
 
 # =====================================================================
 # Dada a lista: lista2 = [1,2,3,4,5]: Peça um valor e remova todas as ocorrências dele manualmente (sem usar remove())
@@ -75,7 +77,7 @@ if numero not in lista1:
     print(achou)
 
 # =====================================================================
-# PLeia uma lista de números inteiros informada pelo usuário. 
+# Leia uma lista de números inteiros informada pelo usuário. 
 # Em seguida, crie uma segunda lista contendo apenas os valores únicos da lista original, sem repetição.
 # Ao final, ordene essa nova lista em ordem crescente e exiba o resultado.
 # =====================================================================
@@ -93,7 +95,7 @@ def nova_lista(listar, novo):
             novo.append(listar[i])
 
     for k in range(len(novo)):  # bubble sort
-        for l in range(len(novo) - 1):
+        for l in range(len(novo)- k - 1):
             if novo[l] > novo[l + 1]:
                 aux = novo[l]
                 novo[l] = novo[l + 1]
