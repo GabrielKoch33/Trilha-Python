@@ -35,7 +35,7 @@ FASE 3 — ESTRUTURAS DE DADOS
 [x] Métodos de lista
 [x] Tuplas
 [x] Sets
-[ ] Dicionários
+[x] Dicionários
 [ ] List comprehension
 [ ] Dictionary comprehension
 [ ] Set comprehension
@@ -47,7 +47,7 @@ FASE 4 — FUNÇÕES
 
 [x] def
 [ ] Parâmetros
-[ ] Retorno
+[x] Retorno
 [x] Escopo local/global
 [ ] Argumentos nomeados
 [ ] *args
@@ -62,18 +62,18 @@ FASE 4 — FUNÇÕES
 
 FASE 4.5 — MENTALIDADE PYTHON PROFISSIONAL
 
-[ ] Evitar excesso de range(len(...))
-[ ] Usar for item in lista
-[ ] Usar enumerate() quando precisar de índice
+[x] Evitar excesso de range(len(...))
+[x] Usar for item in lista
+[x] Usar enumerate() quando precisar de índice
 [ ] Usar desempacotamento de tuplas
-[ ] Retornar dados em vez de imprimir dentro da função
+[x] Retornar dados em vez de imprimir dentro da função
 [ ] Evitar variáveis globais desnecessárias
-[ ] Melhorar nomes de variáveis
+[x] Melhorar nomes de variáveis
 [ ] Refatorar código antigo
 [ ] Distinguir exercício de algoritmo de código profissional
-[ ] Ler código sugerido por IA antes de aceitar
-[ ] Explicar linha por linha o próprio código
-[ ] Escrever código testável
+[x] Ler código sugerido por IA antes de aceitar
+[x] Explicar linha por linha o próprio código
+[x] Escrever código testável
 
 FASE 5 — MÓDULOS E ORGANIZAÇÃO
 
