@@ -541,8 +541,11 @@ produtos = [
     ]
 
 Categoria = {
-
+    #'periférico': [ ],
+    #'vídeo': [ ],
+    #'...
 }
+
 for tipo in produtos:
     if tipo[1] not in Categoria: #caso não exista, então crie
         Categoria[tipo[1]] = []
