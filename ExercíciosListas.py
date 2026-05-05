@@ -89,18 +89,15 @@ tam = int(input('Digite o tamanho da lista: '))
 for i in range(tam):
     lista.append(int(input(f'Digite o {i+1}º valor: ')))
 
-def nova_lista(listar, novo):
-    for i in range(len(listar)):
-        if listar[i] not in novo:
-            novo.append(listar[i])
+def nova_lista(lista, novo):
+    for i in lista:
+        if i not in novo:
+            novo.append(i)
 
     for k in range(len(novo)):  # bubble sort
         for l in range(len(novo)- k - 1):
             if novo[l] > novo[l + 1]:
-                aux = novo[l]
-                novo[l] = novo[l + 1]
-                novo[l + 1] = aux
-
+                novo[l], novo[l+1] = novo[l+1], novo[l] 
     return novo
 
 nova_lista(lista, nova)
