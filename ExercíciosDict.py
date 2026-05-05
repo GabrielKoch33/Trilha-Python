@@ -203,7 +203,7 @@ def remover(estoque) :
 
 def listar(estoque):
     print(estoque)
-# ============================================
+    
 print(listar(estoque))
 while True:
     print('1 - Consultar produto')
