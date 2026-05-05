@@ -203,7 +203,7 @@ def remover(estoque) :
 
 def listar(estoque):
     print(estoque)
-    
+
 print(listar(estoque))
 while True:
     print('1 - Consultar produto')
@@ -564,46 +564,51 @@ print(Categoria)
 #       "Carlos": 50
 #   }
 # =====================================================================
-#
-# Estrutura obrigatória:
-#
-# jogadas = [
-#     ("Alice", 30),
-#     ("Bob", 20),
-#     ("Alice", 15),
-#     ("Carlos", 40),
-#     ("Bob", 35),
-#     ("Carlos", 10)
-# ]
-#
-# Regras:
-#
-# - Não precisa ordenar ainda.
-# - Apenas descubra o maior manualmente.
-# - Não use lambda.
+
+jogadas = [
+     ("Alice", 30),
+     ("Bob", 20),
+     ("Alice", 15),
+     ("Carlos", 40),
+     ("Bob", 35),
+     ("Carlos", 10)
+]
+
+PontuacaoPessoa = {
+
+}
+
+for i in jogadas:
+    if i[0] not in PontuacaoPessoa:
+        PontuacaoPessoa[i[0]] = 0
+    PontuacaoPessoa[i[0]] += i[1]
+
+print(PontuacaoPessoa)
 
 
-# =====================================================================
+
+# =========================================================================
 # Exercício 012: Carrinho de compras.
 # Crie um carrinho como dicionário e calcule subtotal, total geral, produto
 # mais caro e produto com maior quantidade.
-# =====================================================================
-#
-# Estrutura obrigatória:
-#
-# carrinho = {
-#     "mouse": {"quantidade": 2, "preco": 80.0},
-#     "teclado": {"quantidade": 1, "preco": 150.0}
-# }
-#
-# Regras:
-#
-# - Calcule o subtotal de cada produto.
-# - Calcule o total geral.
-# - Mostre o produto mais caro no carrinho.
-# - Mostre o produto com maior quantidade.
-# - Produto mais caro considera preço unitário.
-# - Maior quantidade considera quantidade.
+
+    # Regras:
+    #
+    # - Calcule o subtotal de cada produto.
+    # - Calcule o total geral.
+    # - Mostre o produto mais caro no carrinho.
+    # - Mostre o produto com maior quantidade.
+    # - Produto mais caro considera preço unitário.
+    # - Maior quantidade considera quantidade.
+# =========================================================================
+
+carrinho = {
+     "mouse": {"quantidade": 2, "precoUnit": 80.0},
+     "teclado": {"quantidade": 1, "precoUnit": 150.0},
+     "monitor": {"quantidade": 2, 'precoUnit': 240.0},
+     "vídeo-game": {"quantidade": 1, 'precoUnit': 250.0}
+}
+
 
 
 # =====================================================================
