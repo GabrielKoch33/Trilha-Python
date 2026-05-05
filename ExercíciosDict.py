@@ -38,7 +38,7 @@ produto = {
      "preco": 150.0,
      "estoque": 10
 }
-print(produto.nomeprodutos())
+print(produto)
 
 while True:
     chave = str(input('Digite a chave que deseje acessar dentre as opções acima: '))
@@ -405,20 +405,90 @@ for k,v in alunos.items():
     # - Não permitir contato duplicado.
     # - Validar se o contato existe antes de alterar/remover.
     # - Buscar deve mostrar telefone e email.
+    # - Email não pode repetir, Telefone Pode
 # =====================================================================
 
+# Quando usamos return x,y o python entende como tupla, logo é necessário desempacotar
 agenda = {
      "Ana": {
          "telefone": "9999-1111",
          "email": "ana@email.com"
      }
- }
-def addContato(agenda): pass
-def BuscarContato(agenda):pass
-def AttTelefone(agenda):pass
-def AttEmail(agenda):pass
-def RemoverContato(agenda):pass
-def ListarContatos(agenda):pass
+}
+
+def existeNome(agenda,nomePessoa):
+    if nomePessoa in agenda:
+        return True
+    
+def existeEmail(agenda,emailPessoa):
+    achou = False
+    for dados in agenda.values():
+        if dados['email'] == emailPessoa:
+            achou = True
+    return achou # se achou for false é porque não há email duplicado, se for true é porque há duplicidade
+
+def addContato(agenda):
+    while True:
+        nomePessoa = str(input('Digite o nome da pessoa que deseja cadastrar: ')).title()
+        if existeNome(agenda, nomePessoa) == True:
+            print('Pessoa já existênte, cadastre outro nome')
+            resp = input('Ainda deseja continuar? Sim ou Não?')
+            if resp[0].upper() == 'N':
+                break
+        else:
+            while True:
+                emailPessoa = str(input('Digite o email da pessoa que deseja cadastrar: ')).replace(' ','').lower()
+                if existeEmail(agenda,emailPessoa) == True:
+                    print('Email já existênte, cadastre outro')
+                else:
+                    numCelular = str(input('Digite o número da pessoa que deseja cadastrar: '))
+                    agenda[nomePessoa] = {
+                        'telefone': numCelular,
+                        'email': emailPessoa
+                    }
+                    break #O return é quem faz a interrupção de funções, break apenas interrompe o loop
+            break #O break não sai de condicionais, apenas loops While e For que ele está inserido
+    return f'{nomePessoa} Adicionada!'
+
+def BuscarContato(agenda):
+    nomePessoa = str(input('Digite o nome da pessoa que deseja encontrar: ')).title()
+    if existeNome(agenda,nomePessoa):
+        return agenda[nomePessoa]
+    else:
+        return 'Essa pessoa não está em nosso sistema! Escreveu corretamente?' 
+        # return não escreve nada em tela, apenas entrega valor a função. BuscarContato(agenda) = 'Essa pessoa não...'
+
+def AttTelefone(agenda):
+    nomePessoa = str(input('Digite o nome da pessoa que deseja encontrar: ')).title()
+    if existeNome(agenda,nomePessoa):
+        novoTelefone = str(input(f'Digite o novo telefone de {nomePessoa}: '))
+        agenda[nomePessoa]['telefone'] = novoTelefone
+        return f'Telefone atualizado para {novoTelefone}!'
+    else:
+        return 'Essa pessoa não está em nosso sistema! Escreveu corretamente?' 
+    
+def AttEmail(agenda):
+    nomePessoa = str(input('Digite o nome da pessoa que deseja encontrar: ')).title()
+    if existeNome(agenda,nomePessoa):
+        novoEmail = str(input(f'Digite o novo email de {nomePessoa}: '))
+        agenda[nomePessoa]['email'] = novoEmail
+        return f'Email atualizado para {novoEmail}!'
+    else:
+        return 'Essa pessoa não está em nosso sistema! Escreveu corretamente?' 
+    
+def RemoverContato(agenda):
+    nomePessoa = str(input('Digite o nome da pessoa que deseja remover: ')).title()
+    if existeNome(agenda,nomePessoa):
+        del agenda[nomePessoa]
+        return f'{nomePessoa} Removido(a)!'
+    else:
+        return 'Essa pessoa não está em nosso sistema! Escreveu corretamente?' 
+    
+def ListarContatos(agenda):
+    print()
+    for nome, dados in agenda.items(): #nome = key ; dados = value
+        print(f'Nome: {nome}\n Telefone: {dados['telefone']}\n Email: {dados['email']}')
+        print()
 
 while True:
     print('1 - Adicionar contato')
@@ -431,21 +501,20 @@ while True:
     opcao = int(input('Digite uma das opções acima: '))
     match opcao: 
         case 1:
-            addContato(agenda)
-            
+            print(addContato(agenda))
         case 2:
-            BuscarContato(agenda)
+            print(BuscarContato(agenda))
         case 3:
-            AttTelefone(agenda)
+            print(AttTelefone(agenda))
         case 4:
-            AttEmail(agenda)
+            print(AttEmail(agenda))
         case 5:
-            RemoverContato(agenda)
+            print(RemoverContato(agenda))
         case 6:
             ListarContatos(agenda)
         case 0:
             break
-        
+
 # =====================================================================
 # Exercício 010: Agrupador de produtos por categoria.
 # Você tem uma lista de tuplas e deve transformá-la em um dicionário agrupado por categoria.
@@ -461,15 +530,25 @@ while True:
     #       "móvel": ["cadeira"]
     #   }
 # =====================================================================
+
+
 produtos = [
-     ("mouse", "periférico"),
-     ("teclado", "periférico"),
-     ("monitor", "vídeo"),
-     ("webcam", "vídeo"),
-     ("cadeira", "móvel")
-]
+    ("mouse","periférico"),  #0   
+    ("teclado","periférico"),#1
+    ("monitor","vídeo"),     #2
+    ("webcam","vídeo"),      #3
+    ("cadeira","móvel")      #4
+    ]
 
+Categoria = {
 
+}
+for tipo in produtos:
+    if tipo[1] not in Categoria: #caso não exista, então crie
+        Categoria[tipo[1]] = []
+    Categoria[tipo[1]].append(tipo[0])  # caso ja exista, não crie, e adicione produto a lista criada
+
+print(Categoria)
 
 # =====================================================================
 # Exercício 011: Ranking de jogadores.
