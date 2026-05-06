@@ -1,3 +1,5 @@
+# Quando percorremos um dicionário for i in dicionário o python retorna apenas a chave
+
 # =====================================================================
 # Exercício 001: Cadastro simples de pessoa.
 # Crie um dicionário representando uma pessoa.
@@ -410,14 +412,11 @@ for k,v in alunos.items():
 
 # Quando usamos return x,y o python entende como tupla, logo é necessário desempacotar
 agenda = {
-     "Ana": {
-         "telefone": "9999-1111",
-         "email": "ana@email.com"
-     }
+     "Ana": {"telefone": "9999-1111", "email": "ana@email.com"}
 }
 
 def existeNome(agenda,nomePessoa):
-    if nomePessoa in agenda:
+    if nomePessoa in agenda: # Percorre as chaves, no caso os Nomes das pessoas
         return True
     
 def existeEmail(agenda,emailPessoa):
@@ -599,16 +598,56 @@ print(PontuacaoPessoa)
     # - Mostre o produto mais caro no carrinho.
     # - Mostre o produto com maior quantidade.
     # - Produto mais caro considera preço unitário.
-    # - Maior quantidade considera quantidade.
 # =========================================================================
 
-carrinho = {
-     "mouse": {"quantidade": 2, "precoUnit": 80.0},
-     "teclado": {"quantidade": 1, "precoUnit": 150.0},
-     "monitor": {"quantidade": 2, 'precoUnit': 240.0},
-     "vídeo-game": {"quantidade": 1, 'precoUnit': 250.0}
+carrinho = {               
+     "mouse": {"quantidade": 2, "precoUnit": 80.50},                      
+     "teclado": {"quantidade": 1, "precoUnit": 150.99},
+     "monitor": {"quantidade": 2, 'precoUnit': 240.49},
+     "vídeo-game": {"quantidade": 1, 'precoUnit': 250.90}
+}
+totgeral = 0 
+subtot = 0 
+maiorSubTotal = {
+    'nome': '',
+    'subtot': 0
 }
 
+maiorQtd = {
+    'nome': '',
+    'qtd': 0
+}
+
+maiorPrecoUnitario = {
+    'nome': '',
+    'PrecoUnitario': 0
+}
+
+for produto, detalhes in carrinho.items(): #Produto = 'mouse' - Detalhe = quantidade: 2, precoUnit: 80.0                                          
+    subtot = detalhes['quantidade'] * detalhes['precoUnit'] # acessamos os valores do dict interno pela chave interna 
+    totgeral += subtot # a cada total de produto calculado já adicionamos ao calculo do valor final
+
+    if subtot > maiorSubTotal['subtot']: #esses Ifs servem para verificar se algumas das caracteristas é superior as anteriores
+        maiorSubTotal['nome'] = produto
+        maiorSubTotal['subtot'] = subtot
+    if detalhes['quantidade'] > maiorQtd['qtd']:
+        maiorQtd['nome'] = produto
+        maiorQtd['qtd'] = detalhes['quantidade']
+    if detalhes['precoUnit'] > maiorPrecoUnitario['PrecoUnitario']:
+        maiorPrecoUnitario['nome'] = produto
+        maiorPrecoUnitario['PrecoUnitario'] = detalhes['precoUnit']
+    #print do subtot
+    print(f"PRODUTO: {produto} | QUANTIDADE: {detalhes['quantidade']} | PREÇO UNITÁRIO: {detalhes['precoUnit']} | SUBTOTAL: {subtot:.2f} ")
+
+print('=============================')
+print(f'TOTAL DO ESTOQUE: {totgeral:.2f}')  
+print('=============================')
+print(f'PRODUTO MAIS CARO (Q X P):\n | {maiorSubTotal["nome"]} | Subtotal: {maiorSubTotal["subtot"]} | ')
+print('=============================')
+print(f'PRODUTO COM MAIOR QUANTIDADE:\n | {maiorQtd["nome"]} | {maiorQtd["qtd"]} | ')
+print('=============================')
+print(f'PRODUTO COM MAIOR PREÇO UNITÁRIO:\n | {maiorPrecoUnitario["nome"]} | {maiorPrecoUnitario["PrecoUnitario"]} | ')
+print('=============================')
 
 
 # =====================================================================
@@ -616,26 +655,37 @@ carrinho = {
 # Você recebe um cadastro e uma lista de campos obrigatórios. Verifique quais
 # campos obrigatórios estão vazios ou ausentes.
 # Resultado esperado:
-#   ["email"]
-# =====================================================================
-#
-# Estrutura obrigatória:
-#
-# cadastro = {
-#     "nome": "Ana Silva",
-#     "email": "",
-#     "idade": 22,
-#     "cidade": "Curitiba"
-# }
-#
-# obrigatorios = ["nome", "email", "idade"]
-#
-# Regras:
-#
-# - Campo ausente também é erro.
-# - String vazia conta como erro.
-# - Ao final, gere uma lista com os nomes dos campos inválidos.
+# ["email"]
 
+    # Regras:
+
+    # - Campo ausente também é erro.
+    # - String vazia conta como erro.
+    # - Ao final, gere uma lista com os nomes dos campos inválidos.
+
+# =====================================================================
+
+cadastro = {
+     "nome": "Ana Silva",
+     "email": "",
+     "idade": 22,
+     "cidade": "Curitiba"
+}
+
+obrigatorios = ["nome", "email", "idade","sexo"]
+invalidos = [ ]
+
+for campo, dado in cadastro.items():
+    if  (campo in obrigatorios) and (dado == ''):
+        print(f'O campo {campo} é obrigatório! Respostas vazias não serão aceitas!!!')
+        invalidos.append(campo) 
+        
+for i in obrigatorios:
+    if i not in cadastro:
+        invalidos.append(i)
+        
+print('O campos inválidos ou ausentes são: ')        
+print(invalidos)
 
 # =====================================================================
 # Exercício 014: Resumo de vendas por vendedor.
