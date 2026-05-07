@@ -749,6 +749,7 @@ print(f'Vendas acima de R$300 : {vendasAcima300}')
 # Exercício 015: Mini relatório de logs com dicionário.
 # Você recebe logs simples e deve criar um relatório usando dicionários.
 # Resultado esperado aproximado:
+#
 #   contagem = {
 #       "INFO": 2,
 #       "ERRO": 2,
@@ -760,21 +761,37 @@ print(f'Vendas acima de R$300 : {vendasAcima300}')
 #       "Falha na conexão",
 #       "Timeout"
 #   ]
-# =====================================================================
-#
-# Estrutura obrigatória:
-#
-# logs = [
-#     "INFO - Servidor iniciado",
-#     "ERRO - Falha na conexão",
-#     "INFO - Usuário conectado",
-#     "AVISO - Memória alta",
-#     "ERRO - Timeout",
-#     "DEBUG - Variável carregada"
-# ]
-#
-# Regras:
 #
 # - Mostre a quantidade por tipo de log.
 # - Mostre a lista de mensagens de erro.
 # - Mostre os tipos de log encontrados.
+
+# =====================================================================
+logs = [
+     "INFO - Servidor iniciado",
+     "ERRO - Falha na conexão",
+     "INFO - Usuário conectado",
+     "AVISO - Memória alta",
+     "ERRO - Timeout",
+     "DEBUG - Variável carregada"
+ ]
+
+erros = []
+contagemLogs = {
+
+}
+
+for registro in logs:
+    tipo, mensagem =  registro.split(' - ')
+    
+    if tipo not in contagemLogs:
+        contagemLogs[tipo] = 0
+    contagemLogs[tipo] += 1
+
+    if tipo == 'ERRO':
+        erros.append(mensagem)
+
+for c,v in contagemLogs.items():
+    print(f'{c}: ',v)
+print('==========')
+print(erros)
