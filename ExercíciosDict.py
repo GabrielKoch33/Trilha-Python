@@ -1,4 +1,4 @@
-# Quando percorremos um dicionário for i in dicionário o python retorna apenas a chave
+# Quando percorremos um dicionário for i in dicionário o python retorna apenas a vendedor
 
 # =====================================================================
 # Exercício 001: Cadastro simples de pessoa.
@@ -6,8 +6,8 @@
     # Regras:
     # - Exiba o nome.
     # - Altere a idade.
-    # - Adicione a chave "email".
-    # - Remova a chave "cidade".
+    # - Adicione a vendedor "email".
+    # - Remova a vendedor "cidade".
     # - Exiba o dicionário final.
 # =====================================================================
 
@@ -27,10 +27,10 @@ print(pessoa)
 
 # =====================================================================
 # Exercício 002: Consulta segura com get().
-# Crie um dicionário de produto e peça ao usuário o nome de uma chave.
+# Crie um dicionário de produto e peça ao usuário o nome de uma vendedor.
     # Regras:
-    # - Se a chave existir, mostre o valor.
-    # - Se não existir, mostre "Chave não encontrada".
+    # - Se a vendedor existir, mostre o total_vendedor.
+    # - Se não existir, mostre "vendedor não encontrada".
     # - Use get().
 
 # =====================================================================
@@ -43,26 +43,26 @@ produto = {
 print(produto)
 
 while True:
-    chave = str(input('Digite a chave que deseje acessar dentre as opções acima: '))
-    if chave not in produto:
-        print(produto.get(chave,'Chave Não Encontrada'))
+    vendedor = str(input('Digite a vendedor que deseje acessar dentre as opções acima: '))
+    if vendedor not in produto:
+        print(produto.get(vendedor,'vendedor Não Encontrada'))
     else:
-        print(produto.get(chave))
+        print(produto.get(vendedor))
     op = str(input('Deseja Sair?: (escreva sair)'))
     if op.upper() == 'SAIR':
         break
 print()
 
-# .get() é uma forma 'segura' de retornar um valor de um dicionário. Caso o valor não exista, ao invés dele crashar o programa 
+# .get() é uma forma 'segura' de retornar um total_vendedor de um dicionário. Caso o total_vendedor não exista, ao invés dele crashar o programa 
 # como o dict['nomeproduto'] faz, o get() retorna uma mensagem padrão: get('nomeproduto','mensagem de retorno negativo'), ou caso não definida, None.
 
 # =====================================================================
-# Exercício 003: Percorrendo chaves, valores e itens.
-# Crie um dicionário de aluno e exiba chaves, valores e itens separadamente.
+# Exercício 003: Percorrendo vendedors, total_vendedores e itens.
+# Crie um dicionário de aluno e exiba vendedors, total_vendedores e itens separadamente.
     # Regras:
-    # - Exiba todas as chaves.
-    # - Exiba todos os valores.
-    # - Exiba chave e valor juntos.
+    # - Exiba todas as vendedors.
+    # - Exiba todos os total_vendedores.
+    # - Exiba vendedor e total_vendedor juntos.
     # - Use nomeprodutos().
     # - Use QtdPrecos().
     # - Use items().
@@ -91,8 +91,8 @@ print()
 #   n: 2
 # Regras:
     # - Use um dicionário vazio.
-    # - Cada letra deve ser uma chave.
-    # - A quantidade deve ser o valor.
+    # - Cada letra deve ser uma vendedor.
+    # - A quantidade deve ser o total_vendedor.
     # - Ignore espaços, se houver.
 # =====================================================================#
 palavra = str(input('Digite uma palavra para o usuário exibir a quantidade de cada letra: ')).replace(' ','')
@@ -140,7 +140,7 @@ print()
 
 # =====================================================================
 # Exercício 006: Estoque simples.
-# Crie um dicionário em que a chave é o nome do produto e o valor é a
+# Crie um dicionário em que a vendedor é o nome do produto e o total_vendedor é a
 # quantidade em estoque.
 
 # Regras:
@@ -169,24 +169,24 @@ def adicionar(estoque):
     if emEstoque(estoque, prod):
         return 'Produto Já Está em Estoque, não é possível adicionar'
     else:
-        valor = int(input('Qual o valor desse produto?: '))
-        estoque[prod] = valor
+        total_vendedor = int(input('Qual o total_vendedor desse produto?: '))
+        estoque[prod] = total_vendedor
         return f'{prod} Adicionado!'
 
 def atualizar(estoque):
     (listar(estoque))
     prod = str(input('Digite o nome do produto que será atualizado: '))
     if emEstoque(estoque, prod):
-        chaveouvalor = str(input('Deseja atualizar o nome ou o valor?: ')).upper()
+        vendedoroutotal_vendedor = str(input('Deseja atualizar o nome ou o total_vendedor?: ')).upper()
 
-        if chaveouvalor == 'NOME':
+        if vendedoroutotal_vendedor == 'NOME':
             update_prod = str(input('Digite o produto vai substituir: ')) 
-            estoque[update_prod] = estoque.pop(prod) #Atribui o valor de prod ao update_prod e após isso remove o prod com pop()
+            estoque[update_prod] = estoque.pop(prod) #Atribui o total_vendedor de prod ao update_prod e após isso remove o prod com pop()
             return estoque[update_prod]
 
-        elif chaveouvalor == 'VALOR':
-            valor = float(input(f'Digite a quantidade que {prod} que receberá: '))
-            estoque[prod] = valor
+        elif vendedoroutotal_vendedor == 'total_vendedor':
+            total_vendedor = float(input(f'Digite a quantidade que {prod} que receberá: '))
+            estoque[prod] = total_vendedor
             return estoque[prod]
         else:
             return 'Opção Inválida'
@@ -240,8 +240,8 @@ while True:
     # - Consultar produto.
     # - Atualizar quantidade.
     # - Atualizar preço.
-    # - Calcular valor total de um produto.
-    # - Calcular valor total do estoque.
+    # - Calcular total_vendedor total de um produto.
+    # - Calcular total_vendedor total do estoque.
 # =====================================================================
 
 estoque = {
@@ -264,8 +264,8 @@ def adicionar(estoque):
     if emEstoque(estoque, prod):
         return 'Produto Já Está em Estoque, não é possível adicionar'
     else:
-        valor = float(input('Qual o valor desse produto?: '))
-        estoque[prod]['preco'] = valor
+        total_vendedor = float(input('Qual o total_vendedor desse produto?: '))
+        estoque[prod]['preco'] = total_vendedor
         qtd = int(input('Qual a quantidade desse produto?: '))
         estoque[prod]['quantidade'] = qtd
         return f'{prod} Adicionado!'
@@ -284,8 +284,8 @@ def atualizarPreco(estoque):
     (listar(estoque))
     prod = str(input('Digite o nome do produto que será atualizado: '))
     if emEstoque(estoque, prod):
-        valor = float(input(f'Digite o valor que {prod} que receberá: '))
-        estoque[prod]['preco'] = valor
+        total_vendedor = float(input(f'Digite o total_vendedor que {prod} que receberá: '))
+        estoque[prod]['preco'] = total_vendedor
         return estoque[prod]['preco']
     else:
         return 'Produto Inexistênte em Estoque, Impossível atualizar'
@@ -308,16 +308,16 @@ def CalTotProduto(estoque):
     (listar(estoque))
     prod = str(input('Procure um produto em nosso estoque: '))
     if emEstoque(estoque, prod):
-        return(f'O valor total de {prod} em nosso estoque é de: {(estoque[prod]['quantidade'])*(estoque[prod]['preco'])}')    
+        return(f'O total_vendedor total de {prod} em nosso estoque é de: {(estoque[prod]['quantidade'])*(estoque[prod]['preco'])}')    
     else:
-        return 'Imposível calcular valor de produto que não existe'
+        return 'Imposível calcular total_vendedor de produto que não existe'
     
 def CalTotEstoque(estoque):
     soma = 0
     for QtdPreco in estoque.values(): #{"quantidade": 10, "preco": 80.0},
         m = 1
-        for valor in QtdPreco.values(): # 10 e 80.0
-            m = m*valor
+        for total_vendedor in QtdPreco.values(): # 10 e 80.0
+            m = m*total_vendedor
         soma += m
     return soma      
 # ============================================
@@ -329,8 +329,8 @@ while True:
     print('4 - Atualizar preço')
     print('5 - Remover produto')
     print('6 - Listar estoque')
-    print('7 - Qtd x Valor do Produto')
-    print('8 - Valor Total do Estoque')
+    print('7 - Qtd x total_vendedor do Produto')
+    print('8 - total_vendedor Total do Estoque')
     print('0 - Sair')
     op = int(input('O que deseja fazer? '))
     if op == 1:
@@ -356,13 +356,13 @@ while True:
         print(r1)
     elif op == 8:
         r1 = CalTotEstoque(estoque)
-        print(f'O valor total do estoque é: {r1}')
+        print(f'O total_vendedor total do estoque é: {r1}')
     elif op == 0:
         break
 
 # =====================================================================
 # Exercício 008: Cadastro de alunos com notas.
-# Crie um dicionário em que a chave é o nome do aluno e o valor é uma lista de notas.
+# Crie um dicionário em que a vendedor é o nome do aluno e o total_vendedor é uma lista de notas.
 # Regras:
     
     # - Exiba a média de cada aluno.
@@ -391,17 +391,17 @@ for k,v in alunos.items():
         soma += nota
     media = soma/len(v)
     print(f'-{k}:\n  -Média: {media:.2f}\n  -Status: {definemedia(media)}')
-    # {valor:.nf} :.nf define n casas após o . (float)
+    # {total_vendedor:.nf} :.nf define n casas após o . (float)
 
 # Versão mais prática:
 '''for k, v in alunos.items():
-    media = sum(v) / len(v) ---- A cada chamada de função o os valores utilizados são substituidos, não ficam guardados
+    media = sum(v) / len(v) ---- A cada chamada de função o os total_vendedores utilizados são substituidos, não ficam guardados
     print(f'{k}:\n-Média: {media}\n-Status: {definemedia(media)}')'''
     
 
 # =====================================================================
 # Exercício 009: Agenda de contatos.
-# Crie uma agenda em que a chave é o nome da pessoa e o valor é outro dicionário com telefone e email.
+# Crie uma agenda em que a vendedor é o nome da pessoa e o total_vendedor é outro dicionário com telefone e email.
 
 # Regras:
     # - Não permitir contato duplicado.
@@ -416,7 +416,7 @@ agenda = {
 }
 
 def existeNome(agenda,nomePessoa):
-    if nomePessoa in agenda: # Percorre as chaves, no caso os Nomes das pessoas
+    if nomePessoa in agenda: # Percorre as vendedors, no caso os Nomes das pessoas
         return True
     
 def existeEmail(agenda,emailPessoa):
@@ -455,7 +455,7 @@ def BuscarContato(agenda):
         return agenda[nomePessoa]
     else:
         return 'Essa pessoa não está em nosso sistema! Escreveu corretamente?' 
-        # return não escreve nada em tela, apenas entrega valor a função. BuscarContato(agenda) = 'Essa pessoa não...'
+        # return não escreve nada em tela, apenas entrega total_vendedor a função. BuscarContato(agenda) = 'Essa pessoa não...'
 
 def AttTelefone(agenda):
     nomePessoa = str(input('Digite o nome da pessoa que deseja encontrar: ')).title()
@@ -519,7 +519,7 @@ while True:
 # Você tem uma lista de tuplas e deve transformá-la em um dicionário agrupado por categoria.
     #Regras:
     # - Use dicionário vazio.
-    # - Categoria deve ser a chave.
+    # - Categoria deve ser a vendedor.
     # - Produtos da mesma categoria devem ir para uma lista.
 
     # Resultado esperado:
@@ -624,8 +624,8 @@ maiorPrecoUnitario = {
 }
 
 for produto, detalhes in carrinho.items(): #Produto = 'mouse' - Detalhe = quantidade: 2, precoUnit: 80.0                                          
-    subtot = detalhes['quantidade'] * detalhes['precoUnit'] # acessamos os valores do dict interno pela chave interna 
-    totgeral += subtot # a cada total de produto calculado já adicionamos ao calculo do valor final
+    subtot = detalhes['quantidade'] * detalhes['precoUnit'] # acessamos os total_vendedores do dict interno pela vendedor interna 
+    totgeral += subtot # a cada total de produto calculado já adicionamos ao calculo do total_vendedor final
 
     if subtot > maiorSubTotal['subtot']: #esses Ifs servem para verificar se algumas das caracteristas é superior as anteriores
         maiorSubTotal['nome'] = produto
@@ -697,23 +697,52 @@ print(invalidos)
 #       "Bruno": 250.0,
 #       "Carlos": 400.0
 #   }
-# =====================================================================
-#
-# Estrutura obrigatória:
-#
-# vendas = [
-#     ("Ana", 250.0),
-#     ("Bruno", 100.0),
-#     ("Ana", 300.0),
-#     ("Carlos", 400.0),
-#     ("Bruno", 150.0)
-# ]
-#
-# Regras:
-#
 # - Mostre o total geral vendido.
 # - Mostre o vendedor com maior venda acumulada.
 # - Mostre os vendedores que venderam acima de R$300.
+# =====================================================================
+
+vendas = [
+     ("Ana", 250.0),
+     ("Bruno", 100.0),
+     ("Ana", 300.0),
+     ("Carlos", 400.0),
+     ("Bruno", 150.0)
+ ]
+relatorio_vendas = {
+    #{
+    #'Ana': 550.0, 
+    #'Bruno': 250.0, 
+    #'Carlos': 400.0
+    #}
+}
+
+total_vendido = sum([item[1] for item in vendas])
+# monta a lista e já passa pro sum() numa linha
+
+for item in vendas:
+
+    if item[0] not in relatorio_vendas:
+        relatorio_vendas[item[0]] = 0
+    relatorio_vendas[item[0]] += item[1]
+
+vendasAcima300 = []
+maiorVenda = 0
+vendedorDoMes = ''
+
+for vendedor,total_vendedor in relatorio_vendas.items():
+
+    if total_vendedor > 300:
+        vendasAcima300.append(vendedor)
+
+    if total_vendedor > maiorVenda:
+        maiorVenda = total_vendedor
+        vendedorDoMes = vendedor
+
+print(relatorio_vendas)
+print(f'Total vendido: {total_vendido}')
+print(f'Vendedor com maior total_vendedor total de vendas: {vendedorDoMes}')
+print(f'Vendas acima de R$300 : {vendasAcima300}')
 
 
 # =====================================================================
