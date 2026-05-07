@@ -2,20 +2,20 @@
 # 📋 Você trabalha num sistema de cadastro de usuários. Antes de salvar, o sistema precisa validar se os dados estão corretos.
 # ==========================================================================================================================================
 
-nome = "Ana Silva"
+nome = "Ana S7474ilva"
 email = "ana@email.com"
 idade = 16
 senha = "afg"
 
+
 if type(nome) != str or nome.isnumeric() == True or nome.isalnum() == True:
-    nome_valido = False
-else:
-    novo_nome = nome.strip().split() 
-    for c in range(len(novo_nome)):
-        if len(novo_nome[c]) > 1 and novo_nome[c].isalpha() == True and novo_nome[c] not in '|@\#$%/&*()':
-            nome_valido = True
-        else:
-            nome_valido = False
+    erroNome = 1
+else:   
+    erroNome = 0                             #   0      1    2    3
+    # gabriel koch da silva
+    for p in nome.strip().split():
+        if len(p) == 1 or p.isalpha() == False or '|@\#$%/&*()' in p: 
+            erroNome += 1 
             # REPLACE APENAS FUNCIONA EM STRING, NESSE CASO EU TORNEI NOVO NOME UMA LISTA COM STRINGS (1º e 2º nome)
 
 email = email.strip()
@@ -44,7 +44,7 @@ else:
                     
      
 acesso = 0 # >= 1 acesso negado
-if nome_valido == True:
+if erroNome == 0:
     print('Nome Válido')
 else:
     print('Nome Inválido (NOME INVÁLIDO AOS PADRÕES DO SITE)')
