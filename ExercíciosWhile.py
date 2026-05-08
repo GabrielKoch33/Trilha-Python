@@ -41,15 +41,31 @@ print(f'A quatidade de números inseridos: {contador}\nA soma total: {soma}\n A 
 # while True. O cadastro deve parar quando o usuário responder "N" para continuar. No
 # final, mostre o total gasto e quantos produtos custaram mais de R$1000.00.
 # =====================================================================
+cadastroProdutos = {
 
+}
+while True:
+    produto = input('Digite o nome do produto: ')
+    preco = float(input(f'Digite o preço do {produto}'))
+    cadastroProdutos[produto] = preco
+    sair = str(input('Deseja sair? [Y/N]')).upper()
+    if sair == 'Y':
+        break
 
+print(cadastroProdutos)
 
 # =====================================================================
 # Exercício 010: Faça um programa que leia uma frase e conte, usando while, quantas
 # vogais existem nela. Ignore diferenças entre letras maiúsculas e minúsculas.
 # =====================================================================
 
+frase = input('Digite a frase: ').replace(' ','').lower()
+letra = 0
+while letra < len(frase):
+    if frase[letra] in 'aeiou':
+        countVogais += 1
 
+    letra += 1
 
 
 # =====================================================================
@@ -58,12 +74,115 @@ print(f'A quatidade de números inseridos: {contador}\nA soma total: {soma}\n A 
 # mostre quantas pessoas foram cadastradas, a pessoa mais pesada e a pessoa mais leve.
 # =====================================================================
 
+pessoas = []
+contpessoas = 0
+
+    # if peso > maisPesada:
+    #     maisPesada = peso
+    #     nomeMaisPesada = nome
+    
+while True:
+    nome = input('nome: ')
+    peso = float(input('peso: '))
+    contpessoas += 1
+    pessoas.append([nome,peso])# ja guarda nome e peso como lista dentro de outra lista
+    
+    sair = str(input('Deseja sair? [Y/N]')).upper()
+    if sair == 'Y':
+        break
+
+maisPesada = pessoas[0]                                                                #   0       1      2
+maisLeve = pessoas [0] # Fora de um loop uma unica chave [] significa a posição inteira[[a0 b1],[c1 d2],[e0 f1]]
+
+for item in pessoas[1:]: # começa no indice 1 até o fim
+    if item[1] > maisPesada: #Se usasse um else ele iria considerar <=
+        maisPesada = item #maispesada guarda [nome][peso]
+    elif item[1] < maisLeve:
+        maisLeve = item
+
+print(f'mais pesada: {maisPesada[0]} ({maisPesada[1]}kg)')
+print(f'mais leve:   {maisLeve[0]} ({maisLeve[1]}kg)')
+print(pessoas)
 
 # =====================================================================
 # Exercício 015: Crie um programa que controle uma lista de tarefas. O usuário pode
 # adicionar tarefa, marcar tarefa como concluída, listar tarefas pendentes, listar
 # tarefas concluídas ou sair. Use while para manter o menu funcionando.
 # =====================================================================
+
+def adicionartarefa(toDoList):
+    tarefa = input('Digite o nome da tarefa').title()
+    tarefa = formatatexto(tarefa)
+
+    if jaexiste(toDoList,tarefa):
+        return('Tarefa Já Existênte')
+    else:
+        toDoList[tarefa] = 'PENDENTE'
+        return f'{tarefa} Foi marcada como Pendente!'
+
+def tarefaconcluida(toDoList):
+    tarefa = tarefa = input('Digite o nome da tarefa').title()
+    tarefa = formatatexto(tarefa)
+    if jaexiste(toDoList,tarefa) == False:
+        return('Tarefa Não Existe')
+    else:
+        toDoList[tarefa] = 'CONCLUÍDO'
+        return f'{tarefa} Foi marcada como Concluída!'
+    
+def listarpendentes(toDoList): 
+
+    for task, status in toDoList.items():
+        if status == 'PENDENTE':
+            print(f'{task}: {status}')
+
+    
+def listarconcluidas(toDoList): 
+    
+    for task, status in toDoList.items():
+        if status == 'CONCLUÍDO':
+            print(f'{task}: {status}')
+
+def jaexiste(toDoList,tarefa):
+    if tarefa in toDoList:
+        return True
+    else:
+        return False
+
+def formatatexto(tarefa):
+    trata_texto = tarefa.split()
+    for palavra in trata_texto:
+        if len(palavra) <= 2:
+            palavra = palavra.lower()
+    
+    tarefa = ' '.join(trata_texto)
+    return tarefa
+
+toDoList = {
+
+}
+
+op = ''
+while op != '0':
+    print('1 - Adicionar tarefa')
+    print('2 - Marcar tarefa como concluída')
+    print('3 - Listar tarefas pendentes')
+    print('4 - Listar tarefas concluídas')
+    print('0 - Sair')
+    op = input('Escolha uma opção: ')
+    if op == '1':
+        r1 = adicionartarefa(toDoList)
+        print(r1)
+    elif op == '2': 
+        r1 = tarefaconcluida(toDoList)
+        print(r1)
+    elif op == '3':
+        listarpendentes(toDoList)
+    elif op == '4':
+        listarconcluidas(toDoList)
+    elif op == '0':
+       break 
+        
+
 
 # =====================================================================
 # Exercício 016: Validador de senha com tentativas limitadas
