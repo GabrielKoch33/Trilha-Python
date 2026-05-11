@@ -63,15 +63,11 @@ Antes de entrar profundamente em Ciência de Dados, é necessário ter autonomia
 
 ### Checklist
 
-- [ ] Entender o que é sistema operacional.
 - [ ] Entender diretórios, arquivos e extensões.
 - [ ] Usar terminal em nível básico.
 - [ ] Navegar entre pastas pelo terminal.
 - [ ] Criar, mover, copiar e remover arquivos pelo terminal.
 - [ ] Entender caminhos absolutos e relativos.
-- [ ] Instalar Python localmente.
-- [ ] Usar VS Code ou outro editor profissional.
-- [ ] Criar e organizar pastas de projetos.
 - [ ] Entender diferença entre arquivo `.py` e notebook `.ipynb`.
 - [ ] Criar ambiente virtual com `venv`.
 - [ ] Instalar bibliotecas com `pip`.
