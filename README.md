@@ -1,4 +1,4 @@
-# ─ = alt + 196 / └ = alt + 192 '└──'
+
 FASE 1 — FUNDAMENTOS
 
 [x] Sintaxe básica
