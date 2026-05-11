@@ -478,7 +478,7 @@ while opcao != '0':
 # [ ] validar repetição
 # =====================================================================
 
-cpf = '123.456.789-00'
+cpf = '111.111.111-11'
 novo_cpf = []
 
 for c in cpf:
@@ -486,9 +486,12 @@ for c in cpf:
         novo_cpf.append(c)
 
 for i in novo_cpf:
-    if novo_cpf.count(i) == 1:
-        print(f'O nº {i} repetiu 11 vezes')
+    if novo_cpf.count(i) == 11:
+        print(f'CPF inválido! O nº {i} repetiu 11 vezes')
+        break
 
+cpf = ''.join(novo_cpf)
+print(f'>{cpf}')
 
 
 # =====================================================================
