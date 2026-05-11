@@ -205,6 +205,72 @@ while op != '0':
 # [ ] mostrar o motivo da invalidação
 # =====================================================================
 
+print(' BEM VINDO AO SISTEMA! INSIRA SUA SENHA PARA LOGAR: ')
+numTentativas = 0
+contadorRequisitos = 0
+
+while numTentativas < 5:
+
+    contadorRequisitos = 0  # A cada break do while interno, o contador reinicia para evitar guardar a pontuação no loop anterior
+    senha = str(input('Digite sua senha: ')).strip()
+    numTentativas += 1      # A cada break do while interno, o numtentativas aumenta
+    
+         
+    while True:
+        
+        if len(senha) >= 8:
+            contadorRequisitos += 1
+        else:
+            print('erro tam')
+            break
+        
+        temNumero = False
+        for c in senha:
+            if c in '0123456789':
+                temNumero = True
+                break
+            
+        if temNumero:
+            contadorRequisitos += 1
+        else:
+            print('erro num')
+            break
+        
+        contaMaiuscula = 0 
+        for letra in senha:
+            if letra.isupper():
+                contaMaiuscula = 1
+                break
+
+        if contaMaiuscula == 1:
+            contadorRequisitos += 1
+        else:
+            print('erro maius')
+            break
+
+        temEspecial = False
+        for c in senha:
+            if c in '@#$%&!':         
+                temEspecial = True
+                break
+            
+        if temEspecial:
+            contadorRequisitos += 1
+        else:
+            print('erro espec')
+            break
+
+        break # Esse break, que sai do while True, só é executado quando o contadorRequisitos == 4
+
+    if contadorRequisitos == 4: # Logo, se o break de cima ocorreu, então esse print aparece.
+        print('Senha válida — login bem sucedido!')
+        break # Esse break sai do loop externos (das tentativas)
+
+if contadorRequisitos < 4 and numTentativas == 5: # Quando o numTentativas == 5 então o while externo quebra e roda esse bloco
+    print('Número máximo de tentativas atingido.')
+   # só executa esse bloco se as duas forem true, como o contador de requisitos vai ser == 4 então ele não roda esse bloco
+
+
 # =====================================================================
 # Exercício 017: Caixa eletrônico com saque controlado
 # O usuário começa com saldo de R$ 1000. O programa deve exibir um menu
@@ -220,31 +286,69 @@ while op != '0':
 # - não permitir valores negativos ou zero
 # - contar quantas operações foram feitas
 # - mostrar saldo final ao sair
-#
-# Obrigatório:
-# [ ] while para o menu
-# [ ] if/elif/else
-# [ ] acumulador de operações
-# [ ] validação de valor
-# =====================================================================
 
 # =====================================================================
-# Exercício 018: Leitura de números até sentinela
-# Peça números inteiros ao usuário até ele digitar -1.
-#
-# Ao final, mostre:
-# - quantidade de números digitados, sem contar o -1
-# - soma
-# - média
-# - maior número
-# - menor número
-# - quantidade de pares
-# - quantidade de ímpares
-#
-# Regras:
-# - se o primeiro número for -1, informe que nenhum número foi informado
-# - não use max(), min() nem sum()
-# =====================================================================
+operacoes = {
+
+}
+
+def versaldo(saldo):
+    if 'Ver Saldo' not in operacoes:
+        operacoes['Ver Saldo'] = 0
+    operacoes['Ver Saldo'] += 1
+    print(f'R${saldo}') 
+     
+
+def sacar(saldo):
+    print(f'Seu saldo atual R${saldo}')
+    if 'Saque' not in operacoes:
+        operacoes['Saque'] = {'Total': 0, 'Saque Inválido': 0, 'Saque Válido': 0}
+
+    valorSaque = float(input('Quanto que você deseja sacar?'))
+
+    if valorSaque > saldo:
+        operacoes['Saque']['Total'] += 1
+        operacoes['Saque']['Saque Inválido'] += 1
+        print('impossível sacar valor maior que o saldo')
+        return saldo
+    
+    else:
+        operacoes['Saque']['Total'] += 1
+        operacoes['Saque']['Saque Válido'] += 1
+        return saldo - valorSaque
+    
+def depositar(saldo):
+    print(f'Seu saldo atual R${saldo}')
+    if 'Depositar' not in operacoes:
+        operacoes['Despositar'] = 0
+    operacoes['Despositar'] += 1
+    valorDeposito = float(input('Digite o valor que deseja depositar: '))
+    
+    return saldo + valorDeposito
+
+
+saldo = 1000
+op = ''
+
+while op != '0':  
+    print('1 - Ver saldo')
+    print('2 - Sacar')
+    print('3 - Depositar')
+    print('4 - Relatório')
+    print('0 - Sair')
+    op = input('Qual operação deseja fazer? ')
+    if op == '1':
+        versaldo(saldo)
+    if op == '2':
+       saldo = sacar(saldo)
+    if op == '3':
+       saldo = depositar(saldo)
+    if op == '4':
+        for atividade,quantidade in operacoes.items():
+            print(f'{atividade}: {quantidade}')
+    if op == '0':
+        print('Saindo...')
+        break
 
 # =====================================================================
 # Exercício 019: Jogo de adivinhação com dificuldade
@@ -264,52 +368,61 @@ while op != '0':
 # [ ] encerrar ao acertar ou ao acabar tentativas
 # =====================================================================
 
-# =====================================================================
-# Exercício 020: Menu de lista de compras
-# Crie um menu que manipula uma lista de compras:
-#
-# 1 - Adicionar item
-# 2 - Remover item
-# 3 - Listar itens
-# 4 - Buscar item
-# 5 - Limpar lista
-# 0 - Sair
-#
-# Regras:
-# - não adicionar item vazio
-# - não adicionar item duplicado
-# - ao remover, verificar se existe
-# - ao listar, mostrar posição e nome do item
-#
-# Obrigatório:
-# [ ] while para o menu
-# [ ] lista
-# [ ] in / not in
-# [ ] validações
-# =====================================================================
 
-# =====================================================================
-# Exercício 021: Sistema de notas com quantidade indefinida
-# Peça o nome de alunos e suas notas até o usuário digitar fim no nome.
-#
-# Para cada aluno, peça 3 notas.
-#
-# Ao final, exiba:
-# - nome do aluno
-# - média
-# - situação: aprovado, recuperação ou reprovado
-#
-# Critério:
-# média >= 7       aprovado
-# média >= 5       recuperação
-# média < 5        reprovado
-#
-# Obrigatório:
-# [ ] while para entrada indefinida
-# [ ] lista de tuplas ou listas internas
-# [ ] função para calcular média
-# [ ] função para classificar situação
-# =====================================================================
+import random
+
+numMin = 1
+opcao = ''
+
+while opcao != '0':
+    print('1 - Fácil: 10 tentativas, número de 1 a 50')
+    print('2 - Médio: 7 tentativas, número de 1 a 100')
+    print('3 - Difícil: 5 tentativas, número de 1 a 200')
+    print('4 - Sair')
+
+    opcao = input('>Digite a opção referente a dificuldade escolhida: ')
+    if opcao == '1':
+        tentativas = 10
+        numMax = 50
+        numAletorio = random.randint(1,numMax)
+    elif opcao == '2':
+        tentativas = 7
+        numMax = 100 
+        numAletorio = random.randint(1,numMax)
+    elif opcao == '3': 
+        tentativas = 5
+        numMax = 200
+        numAletorio = random.randint(1,numMax)
+    elif opcao == '4':
+        print('Saindo...')
+        break 
+
+    i = 1
+    while i <= tentativas:
+        print(f'{i}ª Tentativa!')
+    
+        while True:
+            chute = int(input('>Qual é o seu chute?: '))
+            if chute > numMax:
+                print('Valor alto demais, tente denovo!')
+            else:
+                break
+
+        if chute > numAletorio:
+            print(f'Chute alto, o número é MENOR que {chute}')
+            i += 1
+
+        elif chute < numAletorio:
+            print(f'Chute baixo, o número é MAIOR que {chute}')
+            i += 1
+
+        else:
+            print(f'Acertou!!! O nº era {numAletorio} e você chutou {chute}!')
+            break
+
+    resposta = input('Deseja jogar denovo?: [y][n]')
+    if resposta[0].upper( ) == 'N':
+        break 
 
 # =====================================================================
 # Exercício 022: Simulador de login
@@ -348,18 +461,16 @@ while op != '0':
 # Esse é mais difícil. Ele treina índice, controle de repetição e estado anterior.
 # =====================================================================
 
+
+
 # =====================================================================
 # Exercício 024: Verificador de CPF simplificado
 # Peça um CPF no formato livre, podendo ter pontos e traço:
 #
-# 123.456.789-00
-#
 # Extraia apenas os números e valide:
 # - deve ter exatamente 11 dígitos
 # - não pode conter todos os números iguais, como 11111111111
-#
-# Não precisa implementar o cálculo oficial dos dígitos verificadores.
-#
+
 # Obrigatório:
 # [ ] usar while para percorrer caracteres
 # [ ] montar nova string só com dígitos
@@ -367,36 +478,18 @@ while op != '0':
 # [ ] validar repetição
 # =====================================================================
 
-# =====================================================================
-# Exercício 025: Controle de estoque sem dicionário
-# Use duas listas paralelas:
-#
-# produtos = []
-# quantidades = []
-#
-# Crie um menu:
-# 1 - Cadastrar produto
-# 2 - Entrada de estoque
-# 3 - Saída de estoque
-# 4 - Consultar produto
-# 5 - Listar estoque
-# 0 - Sair
-#
-# Regras:
-# - não cadastrar produto duplicado
-# - não permitir saída maior que o estoque
-# - não permitir quantidade negativa
-# - consultar produto pelo nome
-#
-# Obrigatório:
-# [ ] while para menu
-# [ ] listas paralelas
-# [ ] busca por índice
-# [ ] validação
-#
-# Esse exercício é importante porque depois vamos refazê-lo com dicionário.
-# Aí você vai sentir por que dict é melhor.
-# =====================================================================
+cpf = '123.456.789-00'
+novo_cpf = []
+
+for c in cpf:
+    if c.isnumeric():
+        novo_cpf.append(c)
+
+for i in novo_cpf:
+    if novo_cpf.count(i) == 1:
+        print(f'O nº {i} repetiu 11 vezes')
+
+
 
 # =====================================================================
 # Exercício 026: Sequência de Fibonacci até limite
