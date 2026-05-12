@@ -427,10 +427,7 @@ while opcao != '0':
 # =====================================================================
 # Exercício 022: Simulador de login
 # Você tem usuários válidos em duas listas paralelas:
-#
-# usuarios = ["ana", "joao", "maria"]
-# senhas = ["1234", "abcd", "senha10"]
-#
+
 # Peça usuário e senha até o login ser válido ou até atingir 3 tentativas.
 #
 # Regras:
@@ -443,6 +440,39 @@ while opcao != '0':
 # [ ] busca manual na lista
 # [ ] não usar dict
 # =====================================================================
+
+usuarios = ["ana", "joao", "maria"]
+senhas = ["1234", "abcd", "senha10"]
+
+def userExiste (user, usuarios):
+    return user in usuarios
+
+
+tentativas = 0 
+loginSuccess = False
+
+print('> LOGIN NO SISTEMA: ')
+
+while tentativas < 3 and not loginSuccess:
+    user = input('> Informe o Usuário: ')
+    if not userExiste(user,usuarios):
+        print('>Usuário não existe :( ')
+        tentativas += 1
+        continue # ignora tudo abaixo e volta ao inicio do while += i
+        
+    print('>Usuário Válido :) ') # user existir vai pra cá e ignora o if
+    suasenha = input(f'>Digite a senha do usuário {user}: ')
+
+    if senhas[usuarios.index(user)] == suasenha: # se a senha digitada for igual a senha na posicão que esta o user na lista:
+        print('> Login bem sucedido. Bem vindo!')
+        loginSuccess = True
+    else:
+        print(f'Senha para o usuário {user} inválida, tente novamente')
+        tentativas += 1
+
+if not loginSuccess: #se as 3 tentativas foram feitas e o login continuou false:
+    print('Acesso bloqueado — tentativas esgotadas.')
+
 
 # =====================================================================
 # Exercício 023: Compactador simples de caracteres
@@ -478,7 +508,7 @@ while opcao != '0':
 # [ ] validar repetição
 # =====================================================================
 
-cpf = '111.111.111-11'
+cpf = '451.244.841-50'
 novo_cpf = []
 
 for c in cpf:
