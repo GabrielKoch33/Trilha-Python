@@ -26,6 +26,43 @@ nomes.reverse()          # Inverte a ordem atual da lista. [3,2,6] -> [6,2,3]
 nomes.count("Ana")       # Conta quantas vezes o nome Ana aparece na lista
 nomes.index("Carlos")    # Retorna o indice do valor fornecido
 
+# =================================================================================
+# LIST COMPREHENSION
+# É uma forma compacta de criar listas a partir de um loop
+# - Quando usar: quando se deseja criar uma lista a partir de outra
+# - Quando não usar: quando um for exige muitos if, acumuladores e outras variaveis
+# =================================================================================
+
+# Forma comum:
+numeros = [1, 2, 3, 4, 5]
+
+quadrados = []
+
+for n in numeros:
+    quadrados.append(n ** 2)
+
+print(quadrados)
+
+# Com list comprehension:
+numeros = [1, 2, 3, 4, 5]
+
+#nova_lista recebe [expressão sobre cada elemento de outra lista]
+quadrados = [n ** 2 for n in numeros]
+
+print(quadrados)
+# Basicamente: 
+# Crie uma lista 'quadrados',
+# Onde cada elemento dela vai ser o resultado de percorrer outra lista potencializando seus valores **2
+
+# Pode se usar com IF:
+numeros = [1, 2, 3, 4, 5, 6]
+
+# lista 'pares' recebe o valor atual da lista 'numeros' caso o valor seja par
+pares = [numero for numero in numeros if numero % 2 == 0]
+print(pares)
+
+# resultado recebe os valores atuais de numeros, vezes 2, caso o valor atual seja menor 10 e for par
+resultado = [x * 2 for x in numeros if x < 10 if x % 2 == 0]
 
 # ======================================================================
 # SETS
@@ -56,6 +93,45 @@ a.intersection(b) # A = B, existe em ambos
 a.difference(b) # A - B, exclusivo de A
 a.symmetric_difference(b) # (A - B) + (B - A), exclusivo de cada um
 
+# ==========================================================================================================================
+# SET COMPREHENSION
+# ==========================================================================================================================
+
+# Normal:
+nomes = ["Ana", "Bruno", "Ana", "Carlos", "Bruno"]
+
+nomes_unicos = set() #nomes_unicos vai aceitar apenas valores distintos
+
+for nome in nomes:
+    nomes_unicos.add(nome)
+
+print(nomes_unicos)
+
+# com comprehension:
+nomes = ["Ana", "Bruno", "Ana", "Carlos", "Bruno"]
+
+nomes_unicos = {nome for nome in nomes}
+# o set nomes_unicos, vai receber o nome de uma lista de nomes, caso ja exista, o set ignorará
+print(nomes_unicos)
+
+# ---
+emails = [
+    "ANA@EMAIL.COM",
+    "bruno@email.com",
+    "ana@email.com"
+]
+
+emails_normalizados = {email.lower() for email in emails}
+
+print(emails_normalizados)
+
+# ---
+
+palavras = ["python", "sql", "dados", "ti", "engenharia"]
+
+palavras_grandes = {palavra for palavra in palavras if len(palavra) > 3}
+
+
 # ======================================================================
 # TUPLA
 # ======================================================================
@@ -81,7 +157,7 @@ misturado = (1, "A", True, (1,3))
 tuplinha = (1,2,3,4,5)
 
 a,b,c,d,e = tuplinha 
-(x,y,*z) = tuplinha # O * Torna o variavel em lista, permitindo que os valores faltantes sejam atribuidos e ninguem fique de fora
+(x,y,*z) = tuplinha # O * Torna a variavel em lista, permitindo que os valores faltantes sejam atribuidos e ninguem fique de fora
 
 
 # A unica forma de incluir e remover valores de uma tupla é convertendo ela em uma lista e depois para tupla novamente
@@ -136,3 +212,37 @@ d.items()  # lista chaves + valore
 d.pop("idade") # Remove valor
 d.update({"cidade": "RJ"}) # Adicionar/criar key:value
 d["sexo"] = "Masculino" # Pode-se criar e adicionar diretamente, sem função
+
+# ==========================================================================================================================
+# DICT COMPREHENSION
+# É uma forma compacta de criar dicionários a partir de um dicionário com valores percorridos de uma lista de forma compacta
+# - Quando usar: quando se deseja criar uma lista a partir de outra
+# - Quando não usar: quando um for exige muitos if, acumuladores e outras variaveis
+# ==========================================================================================================================
+
+# Com dict normal:
+produtos = ["mouse", "teclado", "monitor"]
+estoque = {}
+
+for produto in produtos:
+    estoque[produto] = 0
+
+print(estoque)
+
+# Com comprehension: 
+produtos = ["mouse", "teclado", "monitor"]
+
+estoque = {produto: 0 for produto in produtos}
+# adicione em dicionário 'estoque' como chave o valor que seja o produto atual em 'produtos', e atribua a ela o valor 0 
+print(estoque)
+
+precos = {
+    "mouse": 80.0,
+    "teclado": 150.0,
+    "monitor": 900.0
+}
+
+precos_com_desconto = {  produto: preco * 0.9 for produto, preco in precos.items()}
+# dict precos_com_desc recebe como chave o produto atual do dicionario preocos e como valor, o preco * 0.9
+# o .items() é para extrair tanto a chave e como o valor de precos
+print(precos_com_desconto)
