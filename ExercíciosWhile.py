@@ -475,25 +475,6 @@ if not loginSuccess: #se as 3 tentativas foram feitas e o login continuou false:
 
 
 # =====================================================================
-# Exercício 023: Compactador simples de caracteres
-# Peça uma string e gere uma versão compactada contando caracteres repetidos
-# consecutivos.
-#
-# Exemplo:
-# Entrada: aaabbcaaaa
-# Saída: a3b2c1a4
-#
-# Regras:
-# - use while para percorrer a string
-# - não use bibliotecas
-# - cuidado com o último grupo de caracteres
-#
-# Esse é mais difícil. Ele treina índice, controle de repetição e estado anterior.
-# =====================================================================
-
-
-
-# =====================================================================
 # Exercício 024: Verificador de CPF simplificado
 # Peça um CPF no formato livre, podendo ter pontos e traço:
 #
@@ -540,114 +521,8 @@ print(f'>{cpf}')
 # [ ] validar limite maior ou igual a 0
 # =====================================================================
 
-# =====================================================================
-# Exercício 027: Analisador de frase interativo
-# Crie um menu que recebe uma frase inicial e permite:
-#
-# 1 - Contar vogais
-# 2 - Contar consoantes
-# 3 - Contar palavras
-# 4 - Mostrar frase invertida
-# 5 - Trocar frase
-# 0 - Sair
-#
-# Regras:
-# - ignorar espaços na contagem de letras
-# - tratar maiúsculas e minúsculas
-# - se a frase estiver vazia, pedir nova frase
-#
-# Obrigatório:
-# [ ] while para menu
-# [ ] funções simples
-# [ ] strings
-# [ ] slicing ou loop manual para inverter
-# =====================================================================
-
-# =====================================================================
-# Exercício 028: Remoção manual de todos os valores repetidos
-# Peça uma lista de números ao usuário. Primeiro pergunte quantos números
-# serão digitados.
-#
-# Depois peça um valor a remover.
-#
-# Remova todas as ocorrências desse valor sem usar remove().
-#
-# Exemplo:
-# Lista: [2, 3, 2, 5, 2]
-# Remover: 2
-# Resultado: [3, 5]
-#
-# Obrigatório:
-# [ ] usar while
-# [ ] cuidado ao remover enquanto percorre
-# [ ] pode usar pop()
-# [ ] não pode usar remove()
-#
-# Dica conceitual: quando remove elementos enquanto percorre, o índice precisa
-# ser controlado com cuidado.
-# =====================================================================
-
-# =====================================================================
-# Exercício 029: Sistema de votação
-# Crie um sistema de votação com candidatos fixos:
-#
-# 1 - Ana
-# 2 - Bruno
-# 3 - Carlos
-# 4 - Voto nulo
-# 0 - Encerrar votação
-#
-# Ao final, mostre:
-# - total de votos
-# - votos de cada candidato
-# - votos nulos
-# - percentual de cada candidato
-# - vencedor
-#
-# Regras:
-# - voto inválido não conta
-# - se houver empate no maior número de votos, informar empate
-# - se ninguém votar, informar votação vazia
-#
-# Obrigatório:
-# [ ] while até digitar 0
-# [ ] contadores
-# [ ] cálculo percentual
-# [ ] lógica de empate
-# =====================================================================
-
-# =====================================================================
-# Exercício 030: Mini sistema bancário com histórico
-# Crie um sistema bancário com menu:
-#
-# 1 - Depositar
-# 2 - Sacar
-# 3 - Ver saldo
-# 4 - Ver extrato
-# 0 - Sair
-#
-# Regras:
-# - saldo inicial 0
-# - depósito precisa ser positivo
-# - saque precisa ser positivo
-# - saque não pode ultrapassar saldo
-# - cada operação válida deve ser salva no extrato
-#
-# O extrato deve ser uma lista de tuplas, por exemplo:
-# [
-#     ("depósito", 100.0),
-#     ("saque", 40.0)
-# ]
-#
-# Ao escolher "Ver extrato", mostre:
-# DEPÓSITO: R$100.00
-# SAQUE: R$40.00
-# Saldo atual: R$60.00
-#
-# Obrigatório:
-# [ ] while para menu
-# [ ] lista de tuplas
-# [ ] validação de valores
-# [ ] controle de saldo
-# [ ] relatório final
-# =====================================================================
+numLimite = int(input('Digite um valor que será o limite da sequência de Fibo: '))
+a, b = 0, 1
+while a < numLimite:
+        print(a, end=' ') # 0 1
+        a, b = b, a + b # b = 
