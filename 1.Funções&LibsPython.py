@@ -1,6 +1,54 @@
 # Quando não se usa from, deve se escrever no código math.sqrt (biblioteca.função)
 # Quando se usa o from, pode se declara apenas a função escolhida
 
+
+#============================================================================= 
+# MACETES FUNÇÕES:
+#=============================================================================
+
+print ('-'*30) = '----------------------------'
+#Você pode manipular quantas vezes algo vai ser escrito multiplicando a string
+
+def contador (*num): # * é o sinal de desempacotar
+	print(num) 
+contador(2,3,8,9,4)
+contador(6,8,9)
+contador(1,2,0,4)
+# É possível passar uma quantidade variada de parametros para uma função, usar o *variavel vai transformar variavel em uma TUPLA
+# Podendo receber quantos valores quiser.
+# isso ocorre pois numeros separados por vírgulas são interpretados como tuplas pelo python: 1,2,3 == (1,2,3)
+
+
+# flush == True
+# ao invés do python guardar os valores na memória para depois exibir, ele exibirá os valores imediatamente, limpando o buffer. 
+# usar file.flush() permite gravar os dados da memoria no disco sem necessidade de fechar o arquivo
+
+#=================================================================================
+# Generator expression:
+# formas compactas de gerar valores, realizam 'lazy evaluation', recebendo valores
+# um por um ao invés de acessar a lista inteira em memória
+# list comprehensio usa [], generator usa ()
+#--usado com:
+sum()
+any()
+#any verifica se pelo menos um elemento do iteravel é true, retorna false se todos forem falsos ou se o iteravel estiver vazio
+# Em Python, 0, None, "" (string vazia) e [] (lista vazia) são considerados False.
+all()
+max()
+min()
+#=================================================================================
+
+#com LC:
+# cada item(r$xx) na lista de vendas é adicionada a outra lista (valores) que é criada na memória
+valores = [item for item in 'vendas']
+total = sum(valores) #ao final disso sum() percorre toda a lista e faz += dos valores
+
+#com GE:
+total = sum(item[1] for item in 'vendas')
+#sum recebe os valores presentes em item[1] do valor atual em vendas, sem a necessidade de percorrer a lista inteira catando os valores,
+#ao fim, total recebe o valor de sum()
+#=============================================================================
+
 import math
 math.sqrt(16)         # 4.0
 var = math.pi         # 3.14159...
@@ -74,3 +122,10 @@ novo = texto.upper()
 
 print("Python".upper())
 # print = PYTHON
+
+words = ["Python", "is", "awesome"]
+sentence = " ".join(words) 
+print(sentence)  # Output: 'Python is awesome'
+
+string = "apple,banana,cherry".split(",") = ['apple', 'banana', 'cherry']
+customstring = "one--two--three".split("--")= ['one', 'two', 'three']
