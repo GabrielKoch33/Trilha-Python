@@ -421,8 +421,8 @@ novo = texto.upper()
 print("Python".upper())
 # print = PYTHON
 
-words = ["Python", "is", "awesome"]
-sentence = " ".join(words) 
+words = ["Python", "is", "awesome"] 
+sentence = " ".join(words) # usado para transformar listas de strings em uma unica string
 print(sentence)  # Output: 'Python is awesome'
 
 string = "apple,banana,cherry".split(",") = ['apple', 'banana', 'cherry']
