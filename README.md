@@ -118,12 +118,12 @@ Nesta fase, o objetivo é dominar as principais estruturas de dados nativas do P
 - [x] Tuplas
 - [x] Sets
 - [x] Dicionários
-- [ ] List comprehension
-- [ ] Dictionary comprehension
-- [ ] Set comprehension
-- [ ] Generator expression
-- [ ] Comprehensions aninhadas
-- [ ] Diferença entre lista, tupla, set e dicionário em problemas reais
+- [x] List comprehension
+- [x] Dictionary comprehension
+- [x] Set comprehension
+- [x] Generator expression
+- [x] Comprehensions aninhadas
+- [x] Diferença entre lista, tupla, set e dicionário em problemas reais
 
 ## Ao final desta fase, devo ser capaz de
 
