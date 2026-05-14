@@ -102,3 +102,44 @@ def nova_lista(lista, novo):
 
 nova_lista(lista, nova)
 print(nova)
+
+#=====================================================================
+# 01) Dada uma lista de números, crie uma lista com o dobro de cada número usando list comprehension.
+#=====================================================================
+
+numeros = [2, 4, 6, 8]
+numeros_dobro = [n*2 for n in numeros]
+print(numeros_dobro)
+
+#=====================================================================
+# 02) Dada uma lista de nomes, crie uma lista apenas com nomes que tenham mais de 5 letras.
+#=====================================================================
+
+nomes = ["Ana", "Gabriel", "João", "Fernanda"]
+
+nomes_com_5letras = [nome for nome in nomes if len(nome) > 5]
+
+print(nomes_com_5letras)
+
+#=====================================================================
+# 03) Dado um dicionário de preços, crie outro dicionário com 10% de desconto.
+#=====================================================================
+
+precos = {
+    "mouse": 80.0,
+    "teclado": 150.0,
+    "monitor": 900.0
+}
+
+precos_desconto10 = { item: preco-preco*0.1 for item, preco in precos.items()}
+
+print(precos_desconto10)
+
+#=====================================================================
+# 04) Dada uma lista de emails com repetição, gere um set com emails em minúsculo.
+#=====================================================================
+
+emails = ["ANA@EMAIL.COM", "ana@email.com", "BRUNO@EMAIL.COM"]
+
+unique_emails = {email.lower() for email in emails}
+print(unique_emails)
