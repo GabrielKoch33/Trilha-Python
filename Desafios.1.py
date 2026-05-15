@@ -6,19 +6,8 @@
 #   "NORMAL"
 #   "PREFERENCIAL"
 #   "URGENTE"
-# =====================================================================
-#
-# Menu:
-#
-# 1 - Adicionar paciente
-# 2 - Chamar próximo paciente
-# 3 - Listar fila
-# 4 - Buscar paciente pelo nome
-# 5 - Cancelar atendimento de paciente
-# 0 - Sair
-#
+
 # Regras:
-#
 # - Pacientes URGENTE devem ser chamados antes de todos.
 # - Pacientes PREFERENCIAL devem ser chamados antes dos NORMAIS.
 # - Dentro da mesma prioridade, respeite a ordem de chegada.
@@ -26,6 +15,55 @@
 # - Não permita idade menor ou igual a zero.
 # - Ao chamar paciente, remova-o da fila.
 # - Se a fila estiver vazia, informe corretamente.
+# =====================================================================
+
+fila = [
+    ("Carlos Silva",    45, "NORMAL"),
+    ("Maria Oliveira",  72, "PREFERENCIAL"),
+    ("João Santos",     30, "NORMAL"),
+    ("Ana Souza",       68, "PREFERENCIAL"),
+    ("Pedro Costa",     25, "URGENTE"),
+    ("Lucia Ferreira",  55, "NORMAL"),
+    ("Roberto Lima",    80, "PREFERENCIAL"),
+    ("Fernanda Rocha",  15, "NORMAL"),
+    ("Marcos Alves",    40, "URGENTE"),
+    ("Beatriz Nunes",   60, "NORMAL")
+]
+
+def chamar_proximo(fila):
+    while fila[2] != "URGENTE":
+
+        pass
+def listar(fila):
+    pass
+def buscar(fila):
+    pass
+def cancelar(fila):
+    pass
+
+while True:
+    print('=================================')
+    print('   SISTEMA DE FILA - CLÍNICA     ')
+    print('=================================')
+    print(' 2 - Chamar próximo paciente     ')
+    print(' 3 - Listar fila                 ')
+    print(' 4 - Buscar paciente pelo nome   ')
+    print(' 5 - Cancelar atendimento        ')
+    print(' 0 - Sair                        ')
+    print('=================================')
+    op = input('Opção: ').strip()
+    if op == '2':
+        chamar_proximo(fila)
+    elif op == '3':
+        listar(fila)
+    elif op == '4':
+        buscar(fila)
+    elif op == '5':
+        cancelar(fila)
+    elif op == '0':
+        print('> Saindo...')
+    else:
+        print('> Opção inválida.')
 
 
 # =====================================================================
@@ -379,6 +417,22 @@ docs = {
     "doc3": "python tem muitas bibliotecas"
 }
 
+palavras_doc = {
+
+}
+
+for doc, text in docs.items():
+    for palavra in text.split():
+        if palavra not in palavras_doc:
+            palavras_doc[palavra] = []
+        if doc in palavras_doc[palavra]:
+            continue
+        palavras_doc[palavra].append(doc)
+
+for i,j in palavras_doc.items():
+    print(i,j)
+            
+
 # =====================================================================
 # Exercício 013: Antes de inserir registros num banco, 
 # você precisa validar se cada campo tem o tipo correto
@@ -398,4 +452,22 @@ esquema = {
     "salario": float,
     "ativo": bool
 }
-registro = {"nome": "Ana", "idade": "vinte", "salario": 3000.0}
+registro = {"nome": "Ana",
+             "idade": "vinte", 
+             "salario": 3000.0}
+
+erros = [ ]
+
+def validador(registro, esquema):
+    for campo, tipo in esquema.items():
+        if campo not in registro.keys():
+            erros.append(f"Campo '{campo}': Ausente")
+        else:
+            if tipo != type(registro[campo]):
+                erros.append(f"Campo '{campo}': esperado tipo {tipo}, recebido {type(registro[campo])}")
+            else:
+                print(f'Campo: {campo} Foi Preenchido corretamente, obrigado!')
+        
+    return erros
+
+print(validador(registro,esquema))
