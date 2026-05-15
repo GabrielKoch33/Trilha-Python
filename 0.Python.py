@@ -133,9 +133,13 @@ d["idade"] = 30 # Atribuir/Substituir
 d.keys()   # lista chaves
 d.values() # lista valores
 d.items()  # lista chaves + valore
-d.pop("idade") # Remove valor
+d.pop("idade") # Remove valor e retorna o removido
 d.update({"cidade": "RJ"}) # Adicionar/criar key:value
 d["sexo"] = "Masculino" # Pode-se criar e adicionar diretamente, sem função
+del 'nome' #deleta um campo
+d.clear() #apaga o dicionario
+
+
 
 # =================================================================================
 # LIST COMPREHENSION
@@ -308,6 +312,12 @@ contador(1)
 ''' para retornar a docstring: '''
 print(contador.__doc__) 
 help(contador) 
+
+# ----------------------------------------- referência a objetos -----------------------------------------
+s1 = [1,2,17,3,5]
+
+s2 = s1[:] # s2 recebe uma cópia INDEPENDENTE de s1
+s2 = list(s1) # s2 recebe o endereço de s1, alterações em s2 afetam s1, e vice versa
 
 # ----------------------------------------- *args e *kwargs -----------------------------------------
 '''
