@@ -1,15 +1,38 @@
 # ==============================================================================================================
-# Bubble Sort:
-# - Forna de ordenar arrays
-# - A comparação ocorre entre j e j+1 (posição atual e sua sucessora)
-# - Pequenos conjuntos de dados, como exige muitas comparações pod ser muito custoso
+# Inserction Sort:
+# - Forma de ordenar arrays
+# - A comparação ocorre entre j e i-=n (posição atual e seus antecessores a fim de encontrar a posição adequada)
+# - Pequenos conjuntos de dados, como exige muitas comparações pode ser muito custoso
 # ==============================================================================================================
+array = [5, 2, 4, 6, 1, 3]
+
+for j in range(1, len(array)):
+    key = array[j]
+    i = j - 1
+    while i >= 0 and array[i] > key:
+        array[i + 1] = array[i]
+        i -= 1
+    array[i + 1] = key
+
+print(array)
+# ==============================================================================================================
+# Bubble Sort:
+# - Forma de ordenar arrays
+# - A comparação ocorre entre j e j+1 (posição atual e sua sucessora)
+# - Pequenos conjuntos de dados, como exige muitas comparações pode ser muito custoso
+# ==============================================================================================================
+
 bubble_sort = [4,1,7,99,8,11,6,87,2,34,23,76]
 
 for k in range(len(bubble_sort)):
+    numTRocas = 0
     for l in range(len(bubble_sort)- k - 1): 
         if bubble_sort[l] > bubble_sort[l+1]:
             bubble_sort[l], bubble_sort[l+1] = bubble_sort[l+1], bubble_sort[l]
+            numTRocas += 1
+    if numTRocas == 0:
+            break
+    
 print(f'Com Bubble Sort{bubble_sort}')
 
 # 1) len()-i -1 # impede que façamos a comparação com os valores  já ordenados no fim da lista
