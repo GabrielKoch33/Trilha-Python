@@ -11,57 +11,98 @@
 # - Pacientes URGENTE devem ser chamados antes de todos.
 # - Pacientes PREFERENCIAL devem ser chamados antes dos NORMAIS.
 # - Dentro da mesma prioridade, respeite a ordem de chegada.
-# - Não permita nome vazio.
-# - Não permita idade menor ou igual a zero.
 # - Ao chamar paciente, remova-o da fila.
 # - Se a fila estiver vazia, informe corretamente.
 # =====================================================================
 
 fila = [
-    ("Carlos Silva",    45, "NORMAL"),
-    ("Maria Oliveira",  72, "PREFERENCIAL"),
-    ("João Santos",     30, "NORMAL"),
-    ("Ana Souza",       68, "PREFERENCIAL"),
-    ("Pedro Costa",     25, "URGENTE"),
-    ("Lucia Ferreira",  55, "NORMAL"),
-    ("Roberto Lima",    80, "PREFERENCIAL"),
-    ("Fernanda Rocha",  15, "NORMAL"),
-    ("Marcos Alves",    40, "URGENTE"),
-    ("Beatriz Nunes",   60, "NORMAL")
+    ("Carlos", 45,"NORMAL"),
+    ("Maria",72,"PREFERENCIAL"),
+    ("João", 30,"NORMAL"),
+    ("Ana",68,"PREFERENCIAL"),
+    ("Pedro",25,"URGENTE"),
+    ("Lucia",55,"NORMAL"),
+    ("Roberto",80,"PREFERENCIAL"),
+    ("Fernanda",15,"NORMAL"),
+    ("Marcos",40,"URGENTE"),
+    ("Beatriz",60,"NORMAL")
 ]
+def remove_paciente(paciente, fila, chegada):
+    fila.pop(chegada)
+    return f'Paciente {paciente} Removido'
 
 def chamar_proximo(fila):
-    while fila[2] != "URGENTE":
+    '''
+    Usar varios if dentro de um loop vai ocasionar de: a cada nova incrementação o programa chamará o paciente,
+    independente da PRIORIDADE, sendo que nosso objetivo é primeiro checar se há URGENTES, depois PREF. e dps NORMAL
+    '''
+    if len(fila) == 0:
+        return 'Fila Vazia'
 
-        pass
+    for chegada, paciente in enumerate(fila):
+        if paciente[2] == 'URGENTE':
+            print(f'Chamando Paciente {paciente[0]}, {paciente[1]} Anos. Ordem de Chegada {chegada}. Estado {paciente[2]}')
+            return remove_paciente(paciente,fila, chegada)
+        
+
+    for chegada, paciente in enumerate(fila):
+        if paciente[2] == 'PREFERENCIAL':
+            print(f'Chamando Paciente {paciente[0]}, {paciente[1]} Anos. Ordem de Chegada {chegada}. Estado {paciente[2]}')
+            return remove_paciente(paciente,fila, chegada)
+        
+    for chegada, paciente in enumerate(fila):
+        if paciente[2] == 'NORMAL':
+            print(f'Chamando Paciente {paciente[0]}, {paciente[1]} Anos. Ordem de Chegada {chegada}. Estado {paciente[2]}')
+            return remove_paciente(paciente,fila, chegada)
+        
+        
 def listar(fila):
-    pass
+    if len(fila) == 0:
+        print('Fila vazia.')
+        return
+
+    print(f'\n{"#":<4} {"Nome":<18} {"Idade":<7} {"Prioridade"}') # :<18 texto é escrito a esquerda e 18 espaços em brancos são postos a direita
+    print('-' * 42)                                               # :>18 texto é escrito a direta e antes dele são inseridos 18 espaços em branco
+    for i, paciente in enumerate(fila):                           # :^10 centraliza o texto
+        print(f'{i+1:<4} {paciente[0]:<18} {paciente[1]:<7} {paciente[2]}')
+
 def buscar(fila):
-    pass
+    nomePaciente = input('Digite o nome: ').title().strip()
+    for paciente in fila:
+        if paciente[0] == nomePaciente:
+            return f'Paciente: {nomePaciente} | Estado: {paciente[2]}'
+    return f'Paciente {nomePaciente} não encontrado.'
+    
+
 def cancelar(fila):
-    pass
+    nomePaciente = input('Digite o nome: ').title().strip()
+    for chegada, paciente in enumerate(fila):
+        if paciente[0] == nomePaciente:
+            return remove_paciente(nomePaciente, fila, chegada)
+    return f'Paciente {nomePaciente} não encontrado.'
 
 while True:
     print('=================================')
     print('   SISTEMA DE FILA - CLÍNICA     ')
     print('=================================')
-    print(' 2 - Chamar próximo paciente     ')
-    print(' 3 - Listar fila                 ')
-    print(' 4 - Buscar paciente pelo nome   ')
-    print(' 5 - Cancelar atendimento        ')
+    print(' 1 - Chamar próximo paciente     ')
+    print(' 2 - Listar fila                 ')
+    print(' 3 - Buscar paciente pelo nome   ')
+    print(' 4 - Cancelar atendimento        ')
     print(' 0 - Sair                        ')
     print('=================================')
     op = input('Opção: ').strip()
-    if op == '2':
-        chamar_proximo(fila)
-    elif op == '3':
+    if op == '1':
+        print(chamar_proximo(fila))
+    elif op == '2':
         listar(fila)
+    elif op == '3':
+        print(buscar(fila))
     elif op == '4':
-        buscar(fila)
-    elif op == '5':
-        cancelar(fila)
+        print(cancelar(fila))
     elif op == '0':
         print('> Saindo...')
+        break
     else:
         print('> Opção inválida.')
 
@@ -130,49 +171,81 @@ while True:
 # Exercício 004: Analisador de transações financeiras sem dicionário.
 # Crie funções para analisar transações financeiras.
 # =====================================================================
-#
-# Estrutura obrigatória:
-#
-# transacoes = [
-#     ("entrada", 1500.00),
-#     ("saida", 300.00),
-#     ("saida", 200.00),
-#     ("entrada", 700.00),
-#     ("saida", 2500.00)
-# ]
-#
-# Regras:
-#
-# - O programa deve mostrar o total de entradas.
-# - O programa deve mostrar o total de saídas.
-# - O programa deve mostrar o saldo final.
-# - O programa deve mostrar a maior entrada.
-# - O programa deve mostrar a maior saída.
-# - O programa deve mostrar em qual transação o saldo ficou negativo pela primeira vez.
-# - O programa deve mostrar a lista de transações suspeitas.
+
+transacoes = [
+     ("entrada", 1500.00),
+     ("saida", 300.00),
+     ("saida", 200.00),
+     ("entrada", 700.00),
+     ("saida", 2500.00)
+]
+
+relatorio_transacoes = []
+
+def contEntradaSaida (transacoes, relatorio_transacoes):
+    entradas = 0
+    saidas = 0
+    for log in transacoes:
+        if log[0] == 'entrada':
+            entradas += 1
+        else:
+            saidas += 1
+    relatorio_transacoes.append(("Entradas:", entradas))
+    relatorio_transacoes.append(("Saídas: ", saidas))
+    
+def Saldo(transacoes, relatorio_transacoes):
+    saldo = 0
+    trans_negativo = 0
+    for id,log in enumerate(transacoes):
+
+        if log [0] == 'entrada':
+            saldo += log[1]
+        else:
+            saldo -= log[1]
+            if saldo < 0:
+                trans_negativo = id
+
+    relatorio_transacoes.append(("Saldo Final: ",saldo))
+    relatorio_transacoes.append(("ID - Transação Saldo Negativo: ", trans_negativo+1))
+
+def MaiorEntrada (transacoes, relatorio_transacoes):
+    maior = 0
+    for log in transacoes:
+        if log[0] == "entrada" and log[1] > maior:
+            maior = log[1]
+
+    relatorio_transacoes.append(("Maior Entrada: ", maior))
+
+def MaiorSaida (transacoes, relatorio_transacoes):
+    maior = 0
+    for log in transacoes:
+        if log[0] == "saida" and log[1] > maior:
+            maior = log[1]
+
+    relatorio_transacoes.append(("Maior Saída: ", maior))
+
+def TransSuspeitas (transacoes, relatorio_transacoes):
+    for id, log in enumerate(transacoes):
+        if (log[0] == 'entrada' and log[1] > 5000) or (log[0] == 'saída' and log[1] > 1000):
+            relatorio_transacoes.append(('Transação Suspeita: ',id))
+
+contEntradaSaida(transacoes, relatorio_transacoes)
+Saldo(transacoes, relatorio_transacoes)
+MaiorEntrada(transacoes, relatorio_transacoes)
+MaiorSaida(transacoes, relatorio_transacoes)
+TransSuspeitas(transacoes, relatorio_transacoes)
+
+for i in relatorio_transacoes:
+    print(i)
+    
 # - Uma transação é suspeita quando a saída for maior que 1000.
 # - Uma transação é suspeita quando a entrada for maior que 5000.
-# - Não usar dicionário.
-# - Use tuplas.
-# - Use função para cada análise principal.
-# - Não use sum(), max() ou min() nas partes principais.
-
 
 # =====================================================================
 # Exercício 005: Validador de comandos de terminal simplificado.
 # Crie um programa que simula comandos básicos digitados pelo usuário.
 # Esse exercício já começa a parecer ferramenta real de automação.
 # =====================================================================
-#
-# Estrutura obrigatória:
-#
-# Comandos válidos:
-# add nome_do_arquivo
-# remove nome_do_arquivo
-# list
-# clear
-# exit
-#
 # Exemplo de uso:
 #
 # > add dados.csv
@@ -200,6 +273,76 @@ while True:
 # - O comando clear limpa a lista.
 # - O comando exit encerra o programa.
 # - Qualquer comando fora do padrão deve ser rejeitado.
+#=====================================================================
+
+def addDict (logs_comandos):
+
+    for acao in logs_comandos:
+        if acao not in relatorio_acessos:
+            relatorio_acessos[acao] = 0
+        relatorio_acessos[acao] += 1
+
+
+def exist (arq_name, lista_arquivos):
+    return arq_name in lista_arquivos # retorna true se existir, false se não existir
+
+def add(arq_name,lista_arquivos):
+    logs_comandos.append('> add')
+    addDict (logs_comandos)
+
+    if exist(arq_name, lista_arquivos):
+        return 'Arquivo já existênte'
+    else:
+        lista_arquivos.append(arq_name)
+
+def remove(arq_name,lista_arquivos):
+    logs_comandos.append('> remove')
+    addDict(logs_comandos)
+
+    if not exist(arq_name, lista_arquivos):
+        return 'Arquivo inexistênte\n nada a remover'
+    else:
+        lista_arquivos.remove(arq_name)
+
+def ls(lista_arquivos):
+    logs_comandos.append('> list')
+    addDict(logs_comandos)
+
+    for i in lista_arquivos:
+        print(i)
+
+def clear(lista_arquivos):
+    logs_comandos.append('> clear')
+    addDict(logs_comandos)
+    lista_arquivos.clear()
+
+lista_arquivos = []
+logs_comandos = []
+relatorio_acessos = {}
+
+while True:
+    print('-'*30)
+    print('''
+    1 - add 
+    2 - remove
+    3 - list
+    4 - clear
+    5 - exit
+    ''')
+    print('-'*30)
+    op = int(input('> type command do start working...'))
+    if op == 1:
+        arq_name = input('Nome do Arquivo: ')
+        add(arq_name,lista_arquivos)
+    elif op == 2:
+        arq_name = input('Nome do Arquivo: ')
+        remove(arq_name,lista_arquivos)
+    elif op == 3:
+        ls(lista_arquivos)
+    elif op == 4:
+        clear(lista_arquivos)
+    elif op == 5:
+        break
 
 
 # =====================================================================
@@ -391,11 +534,30 @@ while True:
 # ]
 # =====================================================================
 csv = [
-    "ID ; NOME ; SALÁRIO ",
+    "ID ; NOME ; SALÁRIO ", 
     "1;  Ana Silva ;4500.0",
     "2; CARLOS SOUZA;  3200",
     "3; maria lima ;5100.50"
 ]
+
+csv_limpo = []
+
+linhas = [] 
+for item in csv:
+    linhas.append(item.strip().split(';'))
+
+colunas = linhas[0]    # ['ID', 'NOME', 'SALÁRIO'] — primeira linha são as chaves
+
+for linha in linhas[1:]:                    # pula o cabeçalho
+    novo = {}                               # dict vazio para esse registro
+    for i in range(len(colunas)):
+        chave = colunas[i].strip().lower()# id, nome, salário
+        valor = linha[i].strip()            # 1, Ana Silva, 4500
+        novo[chave] = valor                 # preenche o dict
+    csv_limpo.append(novo)                  # guarda na lista
+
+for i in csv_limpo:   
+    print(i)
 
 # =====================================================================
 # Exercício 012: Você está construindo um mecanismo de busca simples.
