@@ -487,17 +487,16 @@ while True:
 # Exercício 010: Mini validador de dataset tabular.
 # Crie um programa que analisa uma tabela e gera um relatório de qualidade.
 # =====================================================================
-#
-# Estrutura obrigatória:
-#
+
 dados = [
      ["id", "nome", "idade", "cidade"],
      ["1", "Ana", "23", "Curitiba"],
-     ["2", "Bruno", "", "São Paulo"],
+     ["2", "", "", "São Paulo"],
      ["3", "", "45", "Rio de Janeiro"],
      ["4", "Carlos", "abc", "Belo Horizonte"],
      ["5", "Daniela", "29", ""]
 ]
+
 
 lista_erros = []
 colunas = [] #id, nome, idade, cidade
@@ -507,20 +506,28 @@ for item in dados[0]:
     colunas.append(item)
 
 for linha in dados[1:]: # ignora a primeira linha de colunas e começa ja nos registros
+    linha_tem_erro = False
     for i,item in enumerate(linha):
+
         if item ==  '':
             lista_erros.append((linha[0],colunas[i],'campo vazio'))
+            linha_tem_erro = True
+
         elif i == 2 and not item.isnumeric(): 
             lista_erros.append((linha[0], colunas[i],'valor não numérico'))
-            
-linhas_invalidas = len(lista_erros)
-linhas_validas = (len(dados)-1) - linhas_invalidas
+            linha_tem_erro = True
+
+    if linha_tem_erro:
+        linhas_invalidas += 1
+
+linhas_validas = (len(dados)-1) - (linhas_invalidas) 
 
 for j in lista_erros:
     print(j)
 
 print(linhas_invalidas)
 print(linhas_validas)
+ 
  
 
 # Formato dos erros:
