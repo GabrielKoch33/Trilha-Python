@@ -490,27 +490,46 @@ while True:
 #
 # Estrutura obrigatória:
 #
-# dados = [
-#     ["id", "nome", "idade", "cidade"],
-#     ["1", "Ana", "23", "Curitiba"],
-#     ["2", "Bruno", "", "São Paulo"],
-#     ["3", "", "31", "Rio de Janeiro"],
-#     ["4", "Carlos", "abc", "Belo Horizonte"],
-#     ["5", "Daniela", "29", ""]
-# ]
-#
+dados = [
+     ["id", "nome", "idade", "cidade"],
+     ["1", "Ana", "23", "Curitiba"],
+     ["2", "Bruno", "", "São Paulo"],
+     ["3", "", "45", "Rio de Janeiro"],
+     ["4", "Carlos", "abc", "Belo Horizonte"],
+     ["5", "Daniela", "29", ""]
+]
+
+lista_erros = []
+colunas = [] #id, nome, idade, cidade
+linhas_invalidas = linhas_validas = 0
+
+for item in dados[0]:
+    colunas.append(item)
+
+for linha in dados[1:]: # ignora a primeira linha de colunas e começa ja nos registros
+    for i,item in enumerate(linha):
+        if item ==  '':
+            lista_erros.append((linha[0],colunas[i],'campo vazio'))
+        elif i == 2 and not item.isnumeric(): 
+            lista_erros.append((linha[0], colunas[i],'valor não numérico'))
+            
+linhas_invalidas = len(lista_erros)
+linhas_validas = (len(dados)-1) - linhas_invalidas
+
+for j in lista_erros:
+    print(j)
+
+print(linhas_invalidas)
+print(linhas_validas)
+ 
+
 # Formato dos erros:
-#
 # (numero_linha, nome_coluna, descricao_erro)
-#
-# Exemplo:
-#
 # (2, "idade", "campo vazio")
 # (3, "nome", "campo vazio")
 # (4, "idade", "valor não numérico")
-#
 # Regras:
-#
+
 # - A primeira linha é o cabeçalho.
 # - As demais linhas são registros.
 # - Verifique campos vazios.
@@ -540,16 +559,17 @@ csv = [
     "3; maria lima ;5100.50"
 ]
 
-csv_limpo = []
+csv_limpo = [] #lista final
 
 linhas = [] 
-for item in csv:
-    linhas.append(item.strip().split(';'))
+for item in csv: # para cada string de csv
+    linhas.append(item.strip().split(';')) #vai ser adicionado em 'linhas' a string convertida em lista com o split:
+    #[[ ID, NOME, SALÁRIO ], ["1", Ana Silva, ...][...]] 
+    
 
-colunas = linhas[0]    # ['ID', 'NOME', 'SALÁRIO'] — primeira linha são as chaves
-
-for linha in linhas[1:]:                    # pula o cabeçalho
-    novo = {}                               # dict vazio para esse registro
+colunas = linhas[0]   # Colunas do CSV vai receber o primeiro elemento de linhas =  [ ID, NOME, SALÁRIO ]
+for linha in linhas[1:]:                    # pula o cabeçalho, apenas os dados
+    novo = {}                               # dict vazio para cada registro de pessoa
     for i in range(len(colunas)):
         chave = colunas[i].strip().lower()# id, nome, salário
         valor = linha[i].strip()            # 1, Ana Silva, 4500
