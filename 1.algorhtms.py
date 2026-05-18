@@ -42,7 +42,7 @@ print(f'Com Bubble Sort{bubble_sort}')
 # - Mais rápido que um bubble sort, pois faz menos trocas devido a divisão que ele faz no selection_sortor
 # - A cada incrementação de 'i', o 'j' deixar de percorrer os i's anteriores, pois eles já foram ordenados
 # ==============================================================================================================
-
+# CRESCENTE
 selection_sort = [7,3,5,0,2,1,11,4,2,8,9,23]
 busca_binaria = []
 
@@ -56,6 +56,19 @@ for i in range(len(selection_sort)):
 print(f'Com Selection Sort{selection_sort}')
 busca_binaria = selection_sort[:]       
 
+# DECRESCENTE
+selection_sort = [7,3,5,0,2,1,11,4,2,8,9,23]
+busca_binaria = []
+
+for i in range(len(selection_sort)):
+    posi_maior = i 
+    for j in range(i+1,len(selection_sort)): 
+        if selection_sort[j] > selection_sort[posi_maior]: 
+            posi_maior = j 
+    selection_sort[i], selection_sort[posi_maior] = selection_sort[posi_maior], selection_sort[i] 
+
+print(f'Com Selection Sort{selection_sort}')
+busca_binaria = selection_sort[:]       
 
 # 1) Definimos que a posição do menor elemento é sempre a atual
 # 2) i+1 impede que comparemos elementos já ordenados do selection_sortor     
@@ -80,24 +93,22 @@ busca_binaria = selection_sort[:]
 # - A busca ocorre com base na grandeza do seu valor em relação ao valor central
 # ==============================================================================================================  
 
-array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 23] # LEN = 12
+array = [6,12,17,23,38,45,77,84,90] 
+achou = False
+first = 0
+last = len(array)
+num = int(input('digite o n para achar'))
 
-middle = (len(array))//2 #1)
-num = int(input('Qual valor deseja encontrar?'))
+while first <= last and achou == False:
+    mid = (first + last)//2
+    if array[mid] == num:
+        achou == True
+        break
+    else:
+        if num > array[mid]:
+            first = mid + 1
+        else:
+            last = mid - 1
 
-if array[middle] == num:
-    print(f'O seu valor: {array[middle]} está no meio, na posição {middle}')
-elif num > array[middle]:
-    while middle != 1:
-        for i in range(array[middle+1],array[-1]):
-            middle = len(array[middle+1],array[-1])//2 #2)
-            pass
-
-elif num < array[middle]:
-    while middle != 1:
-        for i in range(array[0],array[middle]):
-            pass
-
-#1) Metade do vetor OG
-#2) Metade//2
+print(f' O numero {num} estava na posoção {mid}')
 
