@@ -325,7 +325,7 @@ s2 = list(s1) # s2 recebe o endereço de s1, alterações em s2 afetam s1, e vic
 Podendo receber quantos valores quiser.
 isso ocorre pois numeros separados por vírgulas são interpretados como tuplas pelo python: 1,2,3 == (1,2,3)
 '''
-# *args é usado para enviar uma variável que não tenha palavras-chave, veja um exemplo:
+# *args é usado para enviar uma quantidade não conhecida de argumentos para uma função, a varivel *args será então uma tupla, veja um exemplo:
 def soma(*args): # * é o sinal de empacotamento num = () 
     total = 0
     for num in args:
@@ -348,6 +348,39 @@ pessoa(gabriel='33', rafael='47', daniel='22')
 # gabriel tem atualmente 33 anos de idade
 # rafael tem atualmente 47 anos de idade
 # daniel tem atualmente 22 anos de idade
+
+# ----------------------------------------- lambda -----------------------------------------
+'''
+Expressões lambda também são conhecidas como funções anônimas, elas diferem das funções comuns por serem declaradas de maneira diferente,
+sem definirmos nome para criarmos elas, utilizamos a palavra-chave lambda para definí-las.
+
+Estrutura:
+variavel = lambda argumento1, argumento2, argumento3: expressão
+'''
+triplo = lambda x: x * 3
+print(type(triplo)) # <class 'function'>
+print(triplo(3)) # 9
+
+quadrado = lambda x: x * x 
+print(quadrado(5)) # 25
+
+        # retorne x == True se o número for ímpar, se for par, retorne False
+impar = lambda x: True if x % 2 == 1 else False
+print(impar(1)) # True
+print(impar(8)) # False
+
+minha_lista = [('maçã', 2), ('banana', 1), ('laranja', 3)]
+minha_lista_ordenada = sorted(minha_lista, key=lambda x: x[1])
+                    #por padrão o python ordenaria por string, para ordenar por valor, usamos key=
+                    #key= recebe o resultado de uma função aplicada sobre cada item, nessa caso os itens na posição [1]
+                    #sorted vai percorrer cada elemento de minha lista e organizar em ordem na minha_lista_ordenada com base no campo [1] comparado entre itens
+print(minha_lista_ordenada)
+
+pessoas = [{'nome': 'Ana', 'idade': 25}, {'nome': 'Beto', 'idade': 22}]
+ordenado = sorted(pessoas, key=lambda x: x['idade'])
+
+a = lambda x,y:  x * y
+print(a(10,5))
 
 #=============================================================================
 # MÓDULOS E BIBLIOTECAS
@@ -437,3 +470,10 @@ print(sentence)  # Output: 'Python is awesome'
 
 string = "apple,banana,cherry".split(",") = ['apple', 'banana', 'cherry']
 customstring = "one--two--three".split("--")= ['one', 'two', 'three']
+
+#-------------------------------- resto da divisão -------------------------------
+
+resto = 7 % 2
+print(resto)
+
+# 7 // 2 = 3 -> 3*2 = 6 -> 7-6 = 1 -> resto == 1
