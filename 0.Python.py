@@ -337,7 +337,7 @@ print(soma(2,3,4,6,5,5,5,1,2)) # 32
 print(soma(2,3)) # 5
 
 # **kwargs nos permite passarmos variáveis com palavras-chave como argumento, veja exemplos:
-
+# kwargs são identificados com 'var = valor' 
 def pessoa(**kwargs): # basicamente um dicionário
     print(kwargs)
     for nome, idade in kwargs.items():
