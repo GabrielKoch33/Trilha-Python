@@ -21,7 +21,7 @@ misturado = [1, "A", True, [12,"3"]]
 
 nomes.append('Gabriel')  # Adiciona "Gabriel" ao fim da lista
 nomes.insert(1,"Luiz")   # Adiciona "Luiz" na posição [1], os elementos a direita são movidos [i+1] 
-nomes.remove(20)         # Remove a primeira ocorrência de um valor 20
+numeros.remove(20)         # Remove a primeira ocorrência de um valor 20
 nomes.pop()              # Remove o último valor da lista, ou pelo indice. Caso não exista o valor, gera erro.  
 nomes.pop(2)             # Remove o INDICE 2, não o valor 2
 nomes.sort()             # Organiza a lista em ordem crescente
@@ -64,7 +64,7 @@ z = [c,d,e]
 # ou adicionar com concatenação
 thistuple = ("apple", "banana", "cherry")
 k = list(thistuple)
-k.append("orange")
+#k.append('orange')
 thistuple = tuple(k)
 
 # Tuplas podem ser Concatenadas
