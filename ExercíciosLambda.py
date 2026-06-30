@@ -57,49 +57,47 @@ print(dobro)
 # Resultado esperado:
 # [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
-
 # -----------------------------------------------------
-
 # Exercício 2
 # Gere uma lista contendo apenas os números pares.
-somente_pares = []
+
+somente_pares = [num for num in numeros if num % 2 == 0]
+print(somente_pares)
+
 # Resultado esperado:
 # [2, 4, 6, 8, 10]
 
-
 # -----------------------------------------------------
-
 # Exercício 3
-# Gere uma lista contendo o quadrado apenas dos números
-# ímpares.
+# Gere uma lista contendo o quadrado apenas dos números ímpares.
 
+quadrado_dos_impares = [ num*num for num in numeros if num % 2 == 1]
+print(quadrado_dos_impares)
 # Resultado esperado:
 # [1, 9, 25, 49, 81]
 
 
 # -----------------------------------------------------
-
 # Exercício 4
 # Transforme todos os nomes para letras maiúsculas.
 
 nomes = ["Ana", "Carlos", "Maria", "Pedro"]
-
+nomes_maiuscula = [nome.upper() for nome in nomes]
+print(nomes_maiuscula)
 # Resultado esperado:
 # ["ANA", "CARLOS", "MARIA", "PEDRO"]
-
 
 # =====================================================
 # NÍVEL 2 - CONDIÇÕES
 # =====================================================
-
 # Exercício 5
-# Transforme a lista abaixo em:
-#
-# ["positivo", "negativo", "positivo",
-#  "negativo", "zero", "positivo"]
-
+# Transforme a lista abaixo
 numeros = [4, -2, 8, -7, 0, 3]
+# em:
+["positivo", "negativo", "positivo","negativo", "zero", "positivo"]
 
+lista_valores = ["positivo" if num > 0 else "negativo" if num < 0 else "zero" for num in numeros]
+print(lista_valores)
 
 # -----------------------------------------------------
 
