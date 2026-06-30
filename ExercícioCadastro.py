@@ -8,13 +8,14 @@ idade = 16
 senha = "afg"
 
 
-if type(nome) != str or nome.isnumeric() or nome.isalnum() == True:
+if not isinstance(nome, str):
     erroNome = 1
 else:   
     erroNome = 0                             
     # gabriel koch da silva
-    for p in nome.strip().split():
-        if len(p) == 1 or p.isalpha() == False or '|@\#$%/&*()' in p: 
+    nome = nome.strip().split()
+    for p in nome:
+        if (len(p) == 1) or (not p.isalpha()) : 
             erroNome += 1 
             # REPLACE APENAS FUNCIONA EM STRING, NESSE CASO EU TORNEI NOVO NOME UMA LISTA COM STRINGS (1º e 2º nome)
 
@@ -22,16 +23,13 @@ email = email.strip()
 if '@' not in email or '.com' not in email: # @ e .com existem?
     email_valido = False
 else:
-    if email[0] in '1234567890': #primeira posição é numero?
-         email_valido = False
-    else:
-        for j in range(len(email)):
-            if email[j].isalpha() and email[j] == email[j].upper():
-                email_valido = False
-                break
-            else:
-                email_valido = True
+    email_valido = True
 
+    for c in email:
+        if c.isalpha() and c.isupper():
+            email_valido = False
+            break
+        
 if idade < 18:
     idade_valida = False
 else:

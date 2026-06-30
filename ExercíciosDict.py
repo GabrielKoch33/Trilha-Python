@@ -67,18 +67,6 @@ print()
     # - Use QtdPrecos().
     # - Use items().
 # =====================================================================
-aluno = {
-     "nome": "Carlos",
-     "curso": "TI",
-     "semestre": 2,
-     "ativo": True
-}
-print(aluno.nomeprodutos())
-print()
-print(aluno.QtdPrecos())
-print()
-print(aluno.items())
-print()
 
 # =====================================================================
 # Exercício 004: Contador de letras.
@@ -151,88 +139,126 @@ print()
     # - Quantidade não pode ser negativa.
 # =====================================================================
 estoque = {
-     "mouse": 10,
-     "teclado": 5,
-     "monitor": 2
+    "mouse": 10,
+    "teclado": 5,
+    "monitor": 2
 }
-def emEstoque(estoque, prod):
-    if prod in estoque:
-        return True
-        
+
+
+def em_estoque(estoque, produto):
+    return produto in estoque
+
+
+def ler_inteiro(mensagem):
+    """Garante que o usuário digite um número válido."""
+    while True:
+        valor = input(mensagem).strip()
+        if valor.isdigit():
+            return int(valor)
+        print("Digite um número válido.")
+
+
 def consultar(estoque):
-     (listar(estoque))
-     prod = str(input('Procure um produto em nosso estoque: '))
-     IsInEstoque = estoque.get(prod,'Produto não disponível')
-     return IsInEstoque
+    listar(estoque)
+    produto = input("Procure um produto em nosso estoque: ").strip().lower()
+
+    if quantidade := estoque.get(produto):
+        return f"Quantidade: {quantidade}"
+    return "Produto não disponível."
+
 
 def adicionar(estoque):
-    prod = str(input('Digite um produto para adicionar ao estoque: '))
-    if emEstoque(estoque, prod):
-        return 'Produto Já Está em Estoque, não é possível adicionar'
+    produto = input("Digite um produto para adicionar ao estoque: ").strip().lower()
+
+    if em_estoque(estoque, produto):
+        return "Produto já está em estoque."
+
     else:
-        total_vendedor = int(input('Qual o total_vendedor desse produto?: '))
-        estoque[prod] = total_vendedor
-        return f'{prod} Adicionado!'
+        quantidade = ler_inteiro("Digite a quantidade desse produto: ")
+        estoque[produto] = quantidade
+
+        return f"{produto} adicionado com sucesso!"
+
 
 def atualizar(estoque):
-    (listar(estoque))
-    prod = str(input('Digite o nome do produto que será atualizado: '))
-    if emEstoque(estoque, prod):
-        vendedoroutotal_vendedor = str(input('Deseja atualizar o nome ou o total_vendedor?: ')).upper()
+    listar(estoque)
+    produto = input("Digite o produto que deseja atualizar: ").strip().lower()
 
-        if vendedoroutotal_vendedor == 'NOME':
-            update_prod = str(input('Digite o produto vai substituir: ')) 
-            estoque[update_prod] = estoque.pop(prod) #Atribui o total_vendedor de prod ao update_prod e após isso remove o prod com pop()
-            return estoque[update_prod]
+    if not em_estoque(estoque, produto):
+        return "Produto inexistente."
 
-        elif vendedoroutotal_vendedor == 'total_vendedor':
-            total_vendedor = float(input(f'Digite a quantidade que {prod} que receberá: '))
-            estoque[prod] = total_vendedor
-            return estoque[prod]
-        else:
-            return 'Opção Inválida'
-    else:
-        return 'Produto Inexistênte em Estoque, Impossível atualizar'
+    opcao = input("Deseja atualizar NOME ou QUANTIDADE? ").strip().upper()
 
-def remover(estoque) :
-    (listar(estoque))
+    match opcao:
+        case "NOME":
+            novo_nome = input("Digite o novo nome: ").strip().lower()
+            if em_estoque(estoque, novo_nome):
+                return "Já existe um produto com esse nome."
+            estoque[novo_nome] = estoque.pop(produto)
+            return f"Produto renomeado para '{novo_nome}'."
 
-    prod = str(input('Digite o produto que deseja remover de estoque: '))
-    if emEstoque(estoque, prod):
-        del estoque[prod]
-        return estoque
-    else:
-        return 'Produto Inexistênte em Estoque, Impossível Remover'
+        case "QUANTIDADE":
+            estoque[produto] = ler_inteiro("Digite a nova quantidade: ")
+            return f"Quantidade de '{produto}' atualizada."
+
+        case _:
+            return "Opção inválida."
+
+
+def remover(estoque):
+    listar(estoque)
+    produto = input("Digite o produto que deseja remover: ").strip().lower()
+
+    if not em_estoque(estoque, produto):
+        return "Produto inexistente."
+
+    del estoque[produto]
+    return f"{produto} removido do estoque."
+
 
 def listar(estoque):
-    print(estoque)
+    print("\n===== ESTOQUE =====")
 
-print(listar(estoque))
+    if not estoque:
+        print("Estoque vazio.")
+        return
+
+    for produto, quantidade in estoque.items():
+        print(f"{produto:<10} -> {quantidade}")
+
+    print("===================\n")
+
+
+acoes = {
+    1: consultar,
+    2: adicionar,
+    3: atualizar,
+    4: remover,
+    5: listar,
+}
+
 while True:
-    print('1 - Consultar produto')
-    print('2 - Adicionar produto')
-    print('3 - Atualizar quantidade')
-    print('4 - Remover produto')
-    print('5 - Listar estoque')
-    print('0 - Sair')
-    op = int(input('O que deseja fazer? '))
-    if op == 1:
-        r1 = consultar(estoque)
-        print(f'Preço: {r1}')
-    elif op == 2:
-        r1 = adicionar(estoque)
-        print(r1)
-    elif op == 3:
-        r1 = atualizar(estoque)
-        print(r1)
-    elif op == 4: 
-        r1 = remover(estoque)       
-        print(r1)
-    elif op == 5:
-        r1 = listar(estoque)
-        print(r1)
-    elif op == 0:
+    print("1 - Consultar produto")
+    print("2 - Adicionar produto")
+    print("3 - Atualizar produto")
+    print("4 - Remover produto")
+    print("5 - Listar estoque")
+    print("0 - Sair")
+
+    op = ler_inteiro("O que deseja fazer? ")
+
+    if op == 0:
+        print("Programa encerrado.")
         break
+
+    funcao = acoes.get(op)
+    if funcao is None:
+        print("Opção inválida.")
+        continue
+
+    resultado = funcao(estoque)
+    if resultado:
+        print(resultado)
 # =====================================================================
 # Exercício 007: Estoque com preço e quantidade.
 # Agora o estoque deve ser mais realista. 
