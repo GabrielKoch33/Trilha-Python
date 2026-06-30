@@ -56,6 +56,7 @@ git push
 '''
 
 # Abrir projeto
+# Clonar projeto (caso esteja em outra máquina)
 
 # ↓
 # git pull origin main
