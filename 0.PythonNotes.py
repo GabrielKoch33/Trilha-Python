@@ -277,11 +277,11 @@ print(precos_com_desconto)
  list comprehensio usa [], generator usa ()
  Normalmente usado com:
 '''
-sum()
-any()
-all()
-max()
-min()
+# sum()
+# any()
+# all()
+# max()
+# min()
 
 total_vendido = sum(item[1] for item in 'vendas') #soma de todos os campos de preços na tabela de vendas
 tem_produto_caro = any(preco > 1000 for preco in 'precos') #retorna True caso algum produto, pelo menos um, tenha preco > 1000
