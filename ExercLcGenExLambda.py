@@ -332,10 +332,12 @@ saidas = [f'{item['tipo']} - {item['valor']}'for item in transacoes if item['tip
 val_entrada = [item['valor'] for item in transacoes if item['tipo'] == 'entrada']
 val_saida = [item['valor'] for item in transacoes if item['tipo'] == 'saida']
 gnex_entr = (valor for valor in val_entrada)
+
 for i in gnex_entr:
     sum_entrada += i
     tot_entr += 1  
 print(f'{sum_entrada},{tot_entr}')  
+
 gnex_saida = (valor for valor in val_saida)
 for i in gnex_saida:
     sum_saida += i
@@ -344,5 +346,6 @@ print(f'{sum_saida},{tot_saida}')
 
 lista_linda_hehe_estou_louco = [f'{item['tipo'].upper()}: R${item['valor']}' for item in transacoes]
 print(lista_linda_hehe_estou_louco)
+
 lista_ordenada = sorted(lista_linda_hehe_estou_louco,key= lambda n:n[1])
 print(lista_ordenada)
